@@ -141,4 +141,55 @@ PVector.random3D = function() {
     return new PVector( vx, vy, vz );
 };
 
+// Common vector operations for PVector
+PVector.prototype = {
+    
+    set: function( vec_or_arr_or_x, y, z ) {
+        if ( arguments.length === 1 ) {
+            this.set( vec_or_arr_or_x.x || vec_or_arr_or_x[ 0 ] || 0,
+                vec_or_arr_or_x.y || vec_or_arr_or_x[ 1 ] || 0,
+                vec_or_arr_or_x.z || vec_or_arr_or_x[ 2 ] || 0 );
+        } else {
+            this.x = v || 0;
+            this.y = y || 0;
+            this.z = z || 0;
+        }
+        return this;
+    },
+
+    clone: function() {
+        return new PVector( this.x, this.y, this.z );
+    },
+
+    copy: function( v ) {
+        this.x = v.x || 0;
+        this.y = v.y || 0;
+        this.z = v.z || 0;
+        return this;
+    },
+
+    toString: function() {
+        return "{ x: " + this.x + ", y: " + this.y + ", z: " + this.z + " }";
+    },
+
+    toArray: function() {
+        return [ this.x, this.y, this.z ];
+    }
+
+};
+
+function createPVectorMethod( method ) {
+    return function( v1, v2 ) {
+        var v = v1.get();
+        v[ method ]( v2 );
+        return v;
+    };
+}
+
+for ( var method in PVector.prototype ) {
+    if ( PVector.prototype.hasOwnProperty( method ) && !PVector.hasOwnProperty( method ) ) {
+        PVector[ method ] = createPVectorMethod( method );
+    }
+}
+
 exports = module.exports = PVector;
