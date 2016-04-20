@@ -1,0 +1,38 @@
+{
+  "name": "pvector",
+  "version": "1.1.0",
+  "description": "A JavaScript vector class for common vector operations based on Processing.js PVector class and Victor.js",
+  "keywords": [
+    "vector",
+    "2d",
+    "3d"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/makio135/pvectorjs.git"
+  },
+  "scripts": {
+    "build": "(echo '/*!' ; cat ./LICENSE ; echo '*/' ; browserify index.js --standalone PVector) > build/pvector.js && cat build/pvector.js | uglifyjs -mc --comments '/^!/' > build/pvector.min.js",
+    "doc": "markdox index.js -o documentation/api.md",
+    "test": "mocha --ui bdd --reporter spec"
+  },
+  "homepage": "http://github.com/makio135/pvectorjs",
+  "author": "Lionel Radisson <lionel@makio135.com> (http://makio135.com/)",
+  "maintainers": [
+    "Lionel Radisson (http://makio135.com/)"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/makio135/pvectorjs/raw/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "browserify": "^3.33.0",
+    "uglify-js": "^2.4.13",
+    "chai": "~1.9.1",
+    "mocha": "~1.18.2",
+    "markdox": "^0.1.4"
+  }
+}
