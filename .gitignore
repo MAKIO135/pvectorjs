@@ -1,3 +1,4 @@
 dev
 node_modules
 test.txt
+npm-debug.log
