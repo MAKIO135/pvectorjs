@@ -758,6 +758,19 @@ PVector.prototype = {
         return this;
     },
 
+    /**
+     * Rotates a vector to the specified angle in radians (2D vectors only), while maintaining the same magnitude.
+     *
+     * ### Examples:
+     *     var vec = new PVector( 10, 20 );
+     *
+     *     vec.rotate( Math.PI / 2 );
+     *     console.log( vec.toArray() );
+     *     // => " [ -20, 9.9999999, 0 ]"
+     *
+     * @return {PVector} `this`
+     * @api public
+     */
     rotateTo: function( angle ) {
         var prev_x = this.x;
         var c = Math.cos( angle );
@@ -767,6 +780,19 @@ PVector.prototype = {
         return this;
     },
 
+    /**
+     * Adds the passed angle in radians to the vector's rotation(2D vectors only), while maintaining the same magnitude.
+     *
+     * ### Examples:
+     *     var vec = new PVector( 10, 0 );
+     *
+     *     vec.rotateBy( Math.PI / 2 );
+     *     console.log( vec.toArray() );
+     *     // => " [ 0, -9.9999999, 0 ]"
+     *
+     * @return {PVector} `this`
+     * @api public
+     */
     rotateBy: function( angle ) {
         angle += this.angle();
         return this.rotateTo( angle );
@@ -1356,6 +1382,19 @@ PVector.prototype = {
         return dx * dx + dy * dy;
     },
 
+
+    /**
+     * Calculates the angle of rotation in radians for a vector (2D vectors only).
+     *
+     * ### Examples:
+     *     var vec1 = new PVector( 10, 20 );
+     *
+     *     console.log( vec1.angle2D() );
+     *     // => 1.1071488
+     *
+     * @return {Number} angle
+     * @api public
+     */
     angle2D: function() {
         if( agruments[ 0 ] ){
             return this.rotateTo( arguments[ 0 ] );
@@ -1370,7 +1409,7 @@ PVector.prototype = {
      *     var vec1 = new PVector( 100, 50 );
      *     var vec2 = new PVector( 200, 60 );
      *
-     *     vec1.dot( vec2 );
+     *     console.log( vec1.dot( vec2 ) );
      *     // => 23000
      *
      * @param {PVector} vector The second vector
