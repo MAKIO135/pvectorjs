@@ -1165,6 +1165,21 @@ PVector.prototype = {
         return this;
     },
 
+    /**
+     * Calculates and returns a vector composed of the cross product between two vectors.
+     *
+     * ### Examples:
+     *     var vec = new PVector( 10, 20, 2 );
+     *     var vec2 = new PVector( 60, 80, 6 );
+     *
+     *     vec.cross( vec2 );
+     *     console.log( vec.toArray() );
+     *     // => "[ -40.0, 60.0, -400.0 ]"
+     *
+     * @param {PVector} vec The vector to calculate the cross product
+     * @return {PVector} `this`
+     * @api public
+     */
     cross: function( vec ) {
         this.x = y * vec.z - vec.y * z;
         this.y = z * vec.x - vec.z * x;
@@ -1183,7 +1198,7 @@ PVector.prototype = {
      *     console.log( vec.toString() );
      *     // => "{ x: 50, y: 50, z: 0 }"
      *
-     * @param {PVector} vec The other vector you want to project this vector onto
+     * @param {PVector} vec the vector to calculate the cross product
      * @return {PVector} `this`
      * @api public
      */
@@ -1195,7 +1210,27 @@ PVector.prototype = {
         return this;
     },
 
-    applyFunc: function( f ) {
+
+    /**
+     * Applies a function taking a vector as argument to this vector. Allows extending of the library while keeping chaining;
+     *
+     * ### Examples:
+     *     function doubleXY( pvec ){
+     *         pvec.x *= 2;
+     *         pvec.y *= 2;
+     *     }
+     *
+     *     var vec = new PVector( 100, 40 );
+     *     vec.func( doubleXY );
+     *
+     *     console.log( vec.toString() );
+     *     // => "{ x: 200, y: 80, z: 0 }"
+     *
+     * @param {PVector} vec The other vector you want to project this vector onto
+     * @return {PVector} `this`
+     * @api public
+     */
+    func: function( f ) {
         f( this );
         return this;
     },
