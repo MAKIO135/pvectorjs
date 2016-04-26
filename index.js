@@ -805,11 +805,9 @@ PVector.prototype = {
      * @api public
      */
     rotateTo: function( angle ) {
-        var prev_x = this.x;
-        var c = Math.cos( angle );
-        var s = Math.sin( angle );
-        this.x = c * this.x - s * this.y;
-        this.y = s * prev_x + c * this.y;
+        var mag = this.mag();
+        this.x = Math.cos( angle ) * mag;
+        this.y = Math.sin( angle ) * mag;
         return this;
     },
 
