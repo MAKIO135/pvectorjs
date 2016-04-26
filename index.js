@@ -439,7 +439,7 @@ PVector.prototype = {
      *
      *     vec1.setMag( 10 );
      *     console.log( vec1.toArray() );
-     *     // => [ 0, 0, 0 ]
+     *     // => [ 3.481553119113957, 3.481553119113957, 8.703882797784892 ]
      *
      * @name PVector.prototype.setMag
      * @return {PVector} `this`
