@@ -1513,7 +1513,7 @@ PVector.prototype = {
         if( arguments[ 0 ] ){
             return this.rotateTo( arguments[ 0 ] );
         }
-        return -Math.atan2( -this.y, this.x );
+        return Math.atan2( -this.y, this.x );
     },
 
     /**
