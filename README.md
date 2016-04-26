@@ -8,18 +8,18 @@ A JavaScript 2D/3D vector class for common vector operations based on Processing
 ### Node.js / Browserify
 
 ```bash
-npm install pvector --save
+npm install pvectorjs --save
 ```
 
 ```javascript
-var PVector = require('pvector');
+var PVector = require('pvectorjs');
 var vec = new PVector(42, 1337);
 ```
 
 ### Bower
 
 ```bash
-bower install pvector --save
+bower install pvectorjs --save
 ```
 
 ### Global object

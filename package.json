@@ -1,5 +1,5 @@
 {
-  "name": "pvector",
+  "name": "pvectorjs",
   "version": "1.0.0",
   "description": "A JavaScript 2D/3D vector class for common vector operations based on Processing.js PVector class and Victor.js",
   "keywords": [
@@ -24,11 +24,16 @@
     "watch": "onchange 'index.js' -- npm run make"
   },
   "devDependencies": {
-    "browserify": "^3.33.0",
-    "uglify-js": "^2.4.13",
-    "chai": "~1.9.1",
-    "mocha": "~1.18.2",
-    "markdox": "^0.1.4",
-    "watchify": "^3.7.0"
+    "browserify": "^3.46.1",
+    "chai": "^1.9.2",
+    "markdox": "^0.1.10",
+    "uglify-js": "^2.6.2",
+    "onchange": "^2.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/makio135/pvectorjs/issues"
+  },
+  "directories": {
+    "test": "test"
   }
 }
