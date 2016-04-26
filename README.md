@@ -1,9 +1,26 @@
 PVectorJS
 =========
-A JavaScript vector class for common vector operations based on Processing.js PVector class and Victor.js  
+A JavaScript 2D/3D vector class for common vector operations based on Processing.js PVector class and Victor.js 
 
 
 ## Installation
+
+### Node.js / Browserify
+
+```bash
+npm install pvector --save
+```
+
+```javascript
+var PVector = require('pvector');
+var vec = new PVector(42, 1337);
+```
+
+### Bower
+
+```bash
+bower install pvector --save
+```
 
 ### Global object
 

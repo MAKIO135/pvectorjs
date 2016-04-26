@@ -5,12 +5,12 @@
     "type": "git",
     "url": "git://github.com/makio135/pvectorjs.git"
   },
-  "version": "0.0.1",
+  "version": "1.0.0",
   "homepage": "https://github.com/makio135/pvectorjs",
   "authors": [
     "Lionel Radisson (http://makio135.com/)"
   ],
-  "description": "A JavaScript vector class for common vector operations based on Processing.js PVector class and Victor.js",
+  "description": "A JavaScript 2D/3D vector class for common vector operations based on Processing.js PVector class and Victor.js",
   "keywords": [
     "vector",
     "2d",
