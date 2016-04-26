@@ -162,115 +162,546 @@ describe( 'Static methods', function() {
         describe( '#PVector.angleBetween', function() {
             var v1, v2, angle;
 
-            before( function(){
+            before( function() {
                 v1 = PVector( 0, 50 );
                 v2 = PVector( 50, 0 );
                 angle = PVector.angleBetween( v1, v2 );
             } );
 
-            it( 'should be an angle between 0 and 2 * Pi', function(){
-                expect( angle )
+            it( 'should return a Number', function() {
+                expect( typeof angle ).to.eql( 'number' );
+            } );
+
+            it( 'should be the angle between 0 and 2 * Pi', function() {
+                expect( angle ).to.gte( 0 );
+                expect( angle ).to.lte( Math.PI * 2 );
+                expect( Math.abs( Math.PI / 2 - angle ) ).to.lte( EPSILON );
             } );
         } );
 
         describe( '#PVector.radians2degrees', function() {
+            var ret;
+
+            before( function() {
+                ret = PVector.radians2degrees( Math.PI / 2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof ret ).to.eql( 'number' );
+            } );
+
+            it( 'should return the angle in degrees', function() {
+                expect( ret ).to.eql( 90 );
+            } );
         } );
 
         describe( '#PVector.degrees2radians', function() {
+            var ret;
+
+            before( function() {
+                ret = PVector.degrees2radians( 90 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof ret ).to.eql( 'number' );
+            } );
+
+            it( 'should return the angle in radians', function() {
+                expect( ret ).to.eql( Math.PI / 2 );
+            } );
         } );
 
         describe( '#PVector.lerpVal', function() {
-        } );
+            var ret;
 
+            before( function() {
+                ret = PVector.lerpVal( 10, 20, 0.75 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof ret ).to.eql( 'number' );
+            } );
+
+            it( 'should return the lerped value', function() {
+                expect( ret ).to.eql( 17.5 );
+            } );
+        } );
+    
     } );
 
 } );
 
 describe( 'Prototype methods', function() {
+    
+    describe( 'Manipulation methods', function() {
 
-    /*
-    // Empty test
-    describe( '#()', function() {
-        var v, x, y, z;
+        describe( '#clone()', function() {
+            var vec1, vec2;
 
-        before( function() {
-            x = 100;
-            y = 200;
-            z = 300;
+            before( function () {
+                vec1 = new PVector( 42, 21 );
+                vec2 = vec1.clone();
+            } );
 
-            v = PVector();
+            it( 'should return a clone of a vector', function () {
+                expect( vec2 ).to.be.an.instanceof( PVector );
+                expect( vec2 ).to.not.equal( vec1 );
+            } );
+
+            it( 'should have the same values as the original', function () {
+                expect( vec1.x ).to.equal( vec2.x );
+                expect( vec1.y ).to.equal( vec2.y );
+            } );
         } );
 
-        it( 'should be an instance of PVector', function() {
-            expect( v ).to.be.an.instanceof( PVector );
+        describe( '#set()', function() {
+            var v1, v2, v3, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector().set( x, y, z );
+                v2 = PVector().set( [ x, y, z ] );
+                v3 = PVector().set( { x: x, y: y, z: z } );
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have axis values set according to parameters', function() {
+                expect( v1 ).to.have.property( 'x', x );
+                expect( v1 ).to.have.property( 'y', y );
+                expect( v1 ).to.have.property( 'z', z );
+
+                expect( v2 ).to.have.property( 'x', x );
+                expect( v2 ).to.have.property( 'y', y );
+                expect( v2 ).to.have.property( 'z', z );
+
+                expect( v3 ).to.have.property( 'x', x );
+                expect( v3 ).to.have.property( 'y', y );
+                expect( v3 ).to.have.property( 'z', z );
+            } );
         } );
 
-        it( 'should have axis properties', function() {
-            expect( v ).to.have.property( 'x', 0 );
-            expect( v ).to.have.property( 'y', 0 );
-            expect( v ).to.have.property( 'z', 0 );
+        describe( '#setX()', function() {
+            var v1, v2, v3, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector().setX( x );
+                v2 = PVector().setX( [ x, y, z ] );
+                v3 = PVector().setX( { x: x, y: y, z: z } );
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have X axis values set according to parameters', function() {
+                expect( v1 ).to.have.property( 'x', x );
+                expect( v1 ).to.have.property( 'y', 0 );
+                expect( v1 ).to.have.property( 'z', 0 );
+
+                expect( v2 ).to.have.property( 'x', x );
+                expect( v2 ).to.have.property( 'y', 0 );
+                expect( v2 ).to.have.property( 'z', 0 );
+
+                expect( v3 ).to.have.property( 'x', x );
+                expect( v3 ).to.have.property( 'y', 0 );
+                expect( v3 ).to.have.property( 'z', 0 );
+            } );
         } );
+
+        describe( '#setY()', function() {
+            var v1, v2, v3, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector().setY( y );
+                v2 = PVector().setY( [ x, y, z ] );
+                v3 = PVector().setY( { x: x, y: y, z: z } );
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have Y axis values set according to parameters', function() {
+                expect( v1 ).to.have.property( 'x', 0 );
+                expect( v1 ).to.have.property( 'y', y );
+                expect( v1 ).to.have.property( 'z', 0 );
+
+                expect( v2 ).to.have.property( 'x', 0 );
+                expect( v2 ).to.have.property( 'y', y );
+                expect( v2 ).to.have.property( 'z', 0 );
+
+                expect( v3 ).to.have.property( 'x', 0 );
+                expect( v3 ).to.have.property( 'y', y );
+                expect( v3 ).to.have.property( 'z', 0 );
+            } );
+        } );
+
+        describe( '#setZ()', function() {
+            var v1, v2, v3, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector().setZ( z );
+                v2 = PVector().setZ( [ x, y, z ] );
+                v3 = PVector().setZ( { x: x, y: y, z: z } );
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have Z axis values set according to parameters', function() {
+                expect( v1 ).to.have.property( 'x', 0 );
+                expect( v1 ).to.have.property( 'y', 0 );
+                expect( v1 ).to.have.property( 'z', z );
+
+                expect( v2 ).to.have.property( 'x', 0 );
+                expect( v2 ).to.have.property( 'y', 0 );
+                expect( v2 ).to.have.property( 'z', z );
+
+                expect( v3 ).to.have.property( 'x', 0 );
+                expect( v3 ).to.have.property( 'y', 0 );
+                expect( v3 ).to.have.property( 'z', z );
+            } );
+        } );
+
+        describe( '#invert()', function() {
+            var v1, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector( x, y, z ).invert();
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have axis values inverted', function() {
+                expect( v1 ).to.have.property( 'x', -x );
+                expect( v1 ).to.have.property( 'y', -y );
+                expect( v1 ).to.have.property( 'z', -z );
+            } );
+        } );
+
+        describe( '#invertX()', function() {
+            var v1, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector( x, y, z ).invertX();
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have X axis value inverted', function() {
+                expect( v1 ).to.have.property( 'x', -x );
+                expect( v1 ).to.have.property( 'y', y );
+                expect( v1 ).to.have.property( 'z', z );
+            } );
+        } );
+
+        describe( '#invertY()', function() {
+            var v1, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector( x, y, z ).invertY();
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have Y axis value inverted', function() {
+                expect( v1 ).to.have.property( 'x', x );
+                expect( v1 ).to.have.property( 'y', -y );
+                expect( v1 ).to.have.property( 'z', z );
+            } );
+        } );
+
+        describe( '#invertZ()', function() {
+            var v1, x, y, z;
+
+            before( function() {
+                x = 100;
+                y = 200;
+                z = 300;
+
+                v1 = PVector( x, y, z ).invertZ();
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have Z axis value inverted', function() {
+                expect( v1 ).to.have.property( 'x', x );
+                expect( v1 ).to.have.property( 'y', y );
+                expect( v1 ).to.have.property( 'z', -z );
+            } );
+        } );
+
+        describe( '#norm()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 100, 200, 300 ).norm();
+            } );
+
+            it( 'should be an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have a magnitude of ~1', function() {
+                expect( Math.abs( v1.x - 0.2672612419124244 ) ).to.lte( EPSILON );
+                expect( Math.abs( v1.y - 0.5345224838248488 ) ).to.lte( EPSILON );
+                expect( Math.abs( v1.z - 0.8017837257372732 ) ).to.lte( EPSILON );
+                expect( Math.abs( v1.mag() - 1 ) ).to.lte( EPSILON );
+            } );
+        } );
+
     } );
-    */
 
-    describe( '#clone()', function() {
-        var vec1, vec2;
+    describe( 'Utility methods', function() {
 
-        before( function () {
-            vec1 = new PVector( 42, 21 );
-            vec2 = vec1.clone();
+        describe( '#mag()', function() {
+            var v1, mag, mag2, mag3;
+
+            before( function() {
+                v1 = new PVector( 4, 3, 0 );
+                mag = v1.mag();
+                mag2 = v1.mag( 10 ).mag();
+                mag3 = v1.mag( PVector(0,0,20) ).mag();
+            } );
+
+            it( 'should return the magnitude of the vector', function() {
+                expect( mag ).to.eql( 5 );
+            } );
+
+            it( 'should set the magnitude if a value is passed', function() {
+                expect( mag2 ).to.eql( 10 );
+            } );
+
+            it( 'should set the magnitude if a vector is passed', function() {
+                expect( mag3 ).to.eql( 20 );
+            } );
         } );
 
-        it( 'should return a clone of a vector', function () {
-            expect( vec2 ).to.be.an.instanceof( PVector );
-            expect( vec2 ).to.not.equal( vec1 );
+        /*describe( '#magSq()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#dist()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#distX()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#distY()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#distZ()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#distSq()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#angle2D()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+        /*describe( '#dot()', function() {
+            var v1;
+
+            before( function() {
+                v1 = new PVector( 100, 200, 300 );
+            } );
+
+            it( 'should', function() {
+
+            } );
+        } );*/
+
+    } );
+    
+
+    describe( 'Comparison methods', function() {
+
+        describe('#isZero()', function () {
+            var vec, vec2;
+
+            before(function () {
+                vec = new PVector( 0.00001, 0.00001, 0.00001 );
+                vec2 = new PVector( 0.0001, 0.0001, 0.0001 );
+            } );
+
+            it('should return true if the vector is zero', function () {
+                expect( vec.isZero() ).to.equal( true );
+                expect( vec2.isZero() ).to.equal( false );
+            } );
         } );
 
-        it( 'should have the same values as the original', function () {
-            expect( vec1.x ).to.equal( vec2.x );
-            expect( vec1.y ).to.equal( vec2.y );
+        describe( '#isEqual()', function () {
+            var vec1, vec2, vec3;
+
+            before(function () {
+                vec1 = new PVector( 100, 100 );
+                vec2 = new PVector( 100, 120 );
+                vec3 = new PVector( 100, 120 );
+            } );
+
+            it('should return false if the vectors are not the same', function () {
+                expect( vec1.isEqual( vec2 ) ).to.equal( false );
+            } );
+            it('should return true if the vectors are the same', function () {
+                expect( vec2.isEqual( vec3 ) ).to.equal( true );
+            } );
         } );
+
     } );
 
-    describe( '#toString()', function() {
-        var vec, ret;
+    describe( 'Conversion methods', function() { 
 
-        before( function() {
-            vec = new PVector( 100, 200 );
-            ret = vec.toString();
+        describe( '#toString()', function() {
+            var vec, ret;
+
+            before( function() {
+                vec = new PVector( 100, 200 );
+                ret = vec.toString();
+            } );
+
+            it( 'should return a string representation of the vector', function () {
+                expect( ret).to.be.a( 'string');
+                expect(ret).to.have.string('{ x: 100, y: 200, z: 0 }');
+            } );
         } );
 
-        it( 'should return a string representation of the vector', function () {
-            expect( ret).to.be.a( 'string');
-            expect(ret).to.have.string('{ x: 100, y: 200, z: 0 }');
-        } );
+        describe('#toObject()', function () {
+            var vec, ret;
+
+            before(function () {
+                vec = new PVector(100, 200);
+                ret = vec.toObject();
+            });
+
+            it('should return an object representation of the vector', function () {
+                expect(ret).to.be.instanceof(Object);
+                expect(ret).to.eql({ x: 100, y: 200, z: 0 });
+            });
+        });
+
+        describe( '#toArray()', function () {
+            var vec, ret;
+
+            before(function () {
+                vec = new PVector( 100, 200 );
+                ret = vec.toArray();
+            });
+
+            it('should return an array representation of the vector', function () {
+                expect(ret).to.be.instanceof(Array);
+                expect(ret).to.eql([ 100, 200, 0 ]);
+            });
+        });
+    
     } );
 
-    describe('#toObject()', function () {
-        var vec, ret;
-
-        before(function () {
-            vec = new PVector(100, 200);
-            ret = vec.toObject();
-        });
-
-        it('should return an object representation of the vector', function () {
-            expect(ret).to.be.instanceof(Object);
-            expect(ret).to.eql({ x: 100, y: 200, z: 0 });
-        });
-    });
-
-    describe( '#toArray()', function () {
-        var vec, ret;
-
-        before(function () {
-            vec = new PVector( 100, 200 );
-            ret = vec.toArray();
-        });
-
-        it('should return an array representation of the vector', function () {
-            expect(ret).to.be.instanceof(Array);
-            expect(ret).to.eql([ 100, 200, 0 ]);
-        });
-    });
-});
+} );

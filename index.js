@@ -1554,7 +1554,7 @@ PVector.prototype = {
      * @api public
      */
     isZero: function() {
-        return this.x === 0 && this.y === 0 && this.z === 0;
+        return this.magSq() < 1e-8;
     },
 
     /**
