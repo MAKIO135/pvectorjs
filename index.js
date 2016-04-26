@@ -828,7 +828,7 @@ PVector.prototype = {
      * @api public
      */
     rotateBy: function( angle ) {
-        angle += this.angle();
+        angle += this.angle2D();
         return this.rotateTo( angle );
     },
 
