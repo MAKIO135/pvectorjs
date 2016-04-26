@@ -452,7 +452,7 @@ PVector.prototype = {
         if( this.magSq() === 0 ){
             return this.set( vec_or_scal, 0, 0 );
         }
-        this.normalize();
+        this.norm();
         this.mult( vec_or_scal );
         return this;
     },
