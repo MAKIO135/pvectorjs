@@ -464,7 +464,7 @@ PVector.prototype = {
         if( this.magSq() === 0 ){
             return this.set( vec_or_scal, 0, 0 );
         }
-        this.normalize();
+        this.norm();
         this.mult( vec_or_scal );
         return this;
     },
@@ -817,11 +817,9 @@ PVector.prototype = {
      * @api public
      */
     rotateTo: function( angle ) {
-        var prev_x = this.x;
-        var c = Math.cos( angle );
-        var s = Math.sin( angle );
-        this.x = c * this.x - s * this.y;
-        this.y = s * prev_x + c * this.y;
+        var mag = this.mag();
+        this.x = Math.cos( angle ) * mag;
+        this.y = Math.sin( angle ) * mag;
         return this;
     },
 
@@ -1525,7 +1523,7 @@ PVector.prototype = {
         if( arguments[ 0 ] ){
             return this.rotateTo( arguments[ 0 ] );
         }
-        return Math.atan2( this.y, this.x );
+        return Math.atan2( -this.y, this.x );
     },
 
     /**
@@ -1568,7 +1566,7 @@ PVector.prototype = {
      * @api public
      */
     isZero: function() {
-        return this.x === 0 && this.y === 0 && this.z === 0;
+        return this.magSq() < 1e-8;
     },
 
     /**
@@ -1667,7 +1665,6 @@ for ( var method in PVector.prototype ) {
 }
 
 exports = module.exports = PVector;
-
 },{}]},{},[1])
 (1)
 });
