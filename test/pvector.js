@@ -511,15 +511,18 @@ describe( 'Prototype methods', function() {
                 mag3 = v1.mag( PVector(0,0,20) ).mag();
             } );
 
+            it( 'should return a Number', function() {
+                expect( typeof mag ).to.eql( 'number' );
+                expect( typeof mag2 ).to.eql( 'number' );
+                expect( typeof mag3 ).to.eql( 'number' );
+            } );
+
             it( 'should return the magnitude of the vector', function() {
                 expect( mag ).to.eql( 5 );
             } );
 
-            it( 'should set the magnitude if a value is passed', function() {
+            it( 'should set the magnitude if a value or a vector is passed', function() {
                 expect( mag2 ).to.eql( 10 );
-            } );
-
-            it( 'should set the magnitude if a vector is passed', function() {
                 expect( mag3 ).to.eql( 20 );
             } );
         } );
