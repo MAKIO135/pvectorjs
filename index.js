@@ -103,7 +103,7 @@ function PVector( vec_or_arr_or_x, y, z ) {
  * ### Examples:
  *     var vec = PVector.random2D();
  *
- *     console.log( vec.toString() );
+ *     console.log( vec.toArray() );
  *     // => "[ -0.75006354, -0.6613658, 0.0 ]"
  *
  * @name PVector.random2D
@@ -120,7 +120,7 @@ PVector.random2D = function() {
  * ### Examples:
  *     var vec = PVector.random2D();
  *
- *     console.log( vec.toString() );
+ *     console.log( vec.toArray() );
  *     // => "[ 0.6091097, -0.22805278, -0.7595902 ]"
  *
  * @name PVector.random3D
@@ -1386,7 +1386,7 @@ PVector.prototype = {
      * @api public
      */
     mag: function() {
-        if( agruments[ 0 ] ){
+        if( arguments[ 0 ] ){
             return this.setMag( arguments[ 0 ] );
         }
         return Math.sqrt( this.magSq() );
@@ -1510,7 +1510,7 @@ PVector.prototype = {
      * @api public
      */
     angle2D: function() {
-        if( agruments[ 0 ] ){
+        if( arguments[ 0 ] ){
             return this.rotateTo( arguments[ 0 ] );
         }
         return Math.atan2( this.y, this.x );
