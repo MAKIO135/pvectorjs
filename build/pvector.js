@@ -840,7 +840,7 @@ PVector.prototype = {
      * @api public
      */
     rotateBy: function( angle ) {
-        angle += this.angle();
+        angle += this.angle2D();
         return this.rotateTo( angle );
     },
 
@@ -1654,7 +1654,7 @@ PVector.prototype = {
 
 function createPVectorMethod( method ) {
     return function( v1, v2 ) {
-        var v = v1.get();
+        var v = v1.clone();
         v[ method ]( v2 );
         return v;
     };
@@ -1667,6 +1667,7 @@ for ( var method in PVector.prototype ) {
 }
 
 exports = module.exports = PVector;
+
 },{}]},{},[1])
 (1)
 });

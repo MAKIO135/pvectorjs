@@ -85,7 +85,7 @@ Returns a new 2D unit vector with a random direction.
 ### Examples:
     var vec = PVector.random2D();
 
-    console.log( vec.toString() );
+    console.log( vec.toArray() );
     // => "[ -0.75006354, -0.6613658, 0.0 ]"
 
 ### Return:
@@ -99,7 +99,7 @@ Returns a new 3D unit vector with a random direction.
 ### Examples:
     var vec = PVector.random2D();
 
-    console.log( vec.toString() );
+    console.log( vec.toArray() );
     // => "[ 0.6091097, -0.22805278, -0.7595902 ]"
 
 ### Return:
