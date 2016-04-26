@@ -7,6 +7,9 @@
     "2d",
     "3d"
   ],
+  "homepage": "http://github.com/makio135/pvectorjs",
+  "author": "Lionel Radisson <lionel@makio135.com> (http://makio135.com/)",
+  "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -16,24 +19,16 @@
     "build": "(echo '/*!' ; cat ./LICENSE ; echo '*/' ; browserify index.js --standalone PVector) > build/pvector.js",
     "min": "cat build/pvector.js | uglifyjs -mc --comments '/^!/' > build/pvector.min.js",
     "doc": "markdox index.js -o documentation/api.md",
-    "test": "mocha --ui bdd --reporter spec"
+    "test": "mocha --ui bdd --reporter spec",
+    "make": "npm run build && npm run test && npm run doc && npm run min",
+    "watch": "onchange 'index.js' -- npm run make"
   },
-  "homepage": "http://github.com/makio135/pvectorjs",
-  "author": "Lionel Radisson <lionel@makio135.com> (http://makio135.com/)",
-  "maintainers": [
-    "Lionel Radisson (http://makio135.com/)"
-  ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/makio135/pvectorjs/raw/master/LICENSE"
-    }
-  ],
   "devDependencies": {
     "browserify": "^3.33.0",
     "uglify-js": "^2.4.13",
     "chai": "~1.9.1",
     "mocha": "~1.18.2",
-    "markdox": "^0.1.4"
+    "markdox": "^0.1.4",
+    "watchify": "^3.7.0"
   }
 }

@@ -3,59 +3,36 @@
  */
 
 /**
- * # Constructor.
  * Works without the `new` keyword.
  *
  * ### Examples:
- *     var vec1a = new PVector( 100, 50 );
- *     console.log( vec1a.toString() );
+ *     var vec1 = new PVector( 100, 50 );
+ *     console.log( vec1.toString() );
  *     // => "{ x: 100, y: 50, z: 0 }"
  *
- *     var vec1b = new PVector( 100, 50, 12 );
- *     console.log( vec1a.toString() );
- *     // => "{ x: 100, y: 50, z: 12 }"
- *
- *
- *     // Use constructor without the `new` keyword:
- *     var vec2a = PVector( 42, 17 );
- *     console.log( vec2a.toString() );
- *     // => "{ x: 42, y: 17, z: 0 }"
- *
- *     var vec2b = PVector( 42, 17, 10 );
- *     console.log( vec2b.toString() );
+ *     // Use constructor without the new keyword:
+ *     var vec2 = PVector( 42, 17, 10 );
+ *     console.log( vec2.toString() );
  *     // => "{ x: 42, y: 17, z: 10 }"
  *
- *
  *     // Create a new vector from an array with a length of 2 or 3:
- *     var vec3a = PVector( [ 4, 12 ] );
- *     console.log( vec3a.toString() );
+ *     var vec3 = PVector( [ 4, 12 ] );
+ *     console.log( vec3.toString() );
  *     // => "{ x: 4, y: 12, z: 0 }"
  *
- *     var vec3b = PVector( [ 4, 12, 5 ] );
- *     console.log( vec3b.toString() );
- *     // => "{ x: 4, y: 12, z: 5 }"
- *
- *
  *     // Create a new vector from an object:
- *     var vec4a = PVector( { x: 30, y: 34 } );
- *     console.log( vec4b.toString() );
- *     // => "{ x: 30, y: 34, z: 0 }"
- *
- *     var vec4b = PVector( { x: 30, y: 34, z: 20 } );
- *     console.log( vec4d.toString() );
+ *     var vec4 = PVector( { x: 30, y: 34, z: 20 } );
+ *     console.log( vec4.toString() );
  *     // => "{ x: 30, y: 34, z: 20 }"
- *
  *
  *     // Create a new 0 PVector:
  *     var v = PVector();
  *     console.log( v.toString() );
  *     // => "{ x: 0, y: 0, z: 0 }"
  *
- * @param {Number} x Value of the x axis
- * @param {Number} y Value of the y axis
- * @param {Number} z Value of the z axis
- * @param {Array} arr Array of 2 or 3 values
- * @param {Object} obj Object with x, y (and z) properties
+ * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+ * @param {Number} y Value of the Y axis
+ * @param {Number} z Value of the Z axis
  * @return {PVector}
  * @api public
  */
@@ -75,7 +52,7 @@ function PVector( vec_or_arr_or_x, y, z ) {
      * The X axis
      *
      * ### Examples:
-     *     var vec = new PVector(42, 21);
+     *     var vec = new PVector(42, 21, 15);
      *
      *     vec.x;
      *     // => 42
@@ -88,7 +65,7 @@ function PVector( vec_or_arr_or_x, y, z ) {
      * The Y axis
      *
      * ### Examples:
-     *     var vec = new PVector(42, 21);
+     *     var vec = new PVector(42, 21, 15);
      *
      *     vec.y;
      *     // => 21
@@ -112,6 +89,7 @@ function PVector( vec_or_arr_or_x, y, z ) {
 }
 
 /**
+ * ___
  * # Static Methods
  */
 
@@ -239,13 +217,13 @@ PVector.degrees2radians = function( degrees ) {
 };
 
 /**
- * Calculates a number between two numbers at a specific increment. The amount parameter is the amount to interpolate between the two values where 0.0 equal to the first point, 0.1 is very near the first point, 0.5 is half-way in between, etc. The lerp function is convenient for creating motion along a straight path and for drawing dotted lines.
+ * Calculates a number between two numbers at a specific increment. The amount parameter is the amount to interpolate between the two values where 0.0 equal to the first point, 0.1 is very near the first point, 0.5 is half-way in between, etc.
  *
  * ### Examples:
- *     var a = PVector.lerpVal( 10, 20, 0.5 );
+ *     var foo = PVector.lerpVal( 10, 20, 0.75 );
  *
- *     console.log( a );
- *     // => "15"
+ *     console.log( foo );
+ *     // => "17.5"
  *
  * @name PVector.lerpVal
  * @param {Number} a First value
@@ -260,9 +238,13 @@ PVector.lerpVal = function( a, b, amount ) {
 
 
 /**
+ * ___
  * # PVector.prototype Methods
  */
 
+/**
+ * @api private
+ */
 PVector.prototype = {
 
     /**
@@ -301,6 +283,9 @@ PVector.prototype = {
      *     // => "{ x: 10, y: 10, z: 50 }"
      *
      * @name PVector.prototype.set
+     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+     * @param {Number} y Value of the y axis
+     * @param {Number} z Value of the z axis
      * @return {PVector} `this`
      * @api public
      */
@@ -332,6 +317,7 @@ PVector.prototype = {
      *     // => "{ x: 10, y: 20, z: 0 }"
      *
      * @name PVector.prototype.setX
+     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
      * @return {PVector} `this`
      * @api public
      */
@@ -344,6 +330,7 @@ PVector.prototype = {
      * Same as setX with Y axis.
      *
      * @name PVector.prototype.setY
+     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the Y axis
      * @return {PVector} `this`
      * @api public
      */
@@ -356,6 +343,7 @@ PVector.prototype = {
      * Same as setX with Z axis.
      *
      * @name PVector.prototype.setZ
+     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y and z properties, an Array of 3 values, or the value of the Z axis
      * @return {PVector} `this`
      * @api public
      */
@@ -1349,7 +1337,6 @@ PVector.prototype = {
         return this;
     },
 
-
     /**
      * Applies a function taking a vector as argument to this vector. Allows extending of the library while keeping chaining;
      *
@@ -1395,7 +1382,7 @@ PVector.prototype = {
      *     // => 10
      *     
      * @name PVector.prototype.mag
-     * @return {Number/this}
+     * @return {Number_or_this} magnitude_or_this Return magnitude or this if a value is passed as parameter
      * @api public
      */
     mag: function() {
@@ -1415,7 +1402,7 @@ PVector.prototype = {
      *     // => 25
      *     
      * @name PVector.prototype.magSq
-     * @return {Number/this}
+     * @return {Number} magnitude
      * @api public
      */
     magSq: function() {
@@ -1594,7 +1581,6 @@ PVector.prototype = {
         return this.x === vec.x && this.y === vec.y && this.z === vec.z;
     },
 
-
     /**
      * ## Conversion methods
      *
@@ -1653,37 +1639,6 @@ PVector.prototype = {
     }
 
 };
-
-/**
- * Aliases
- */
-/*
-    PVector.rad2deg = PVector.radians2degrees;
-    PVector.deg2rad = PVector.degrees2radians;
-    PVector.prototype.copy = PVector.prototype.set;
-    PVector.prototype.copyX = PVector.prototype.setX;
-    PVector.prototype.copyY = PVector.prototype.setY;
-    PVector.prototype.copyZ = PVector.prototype.setZ;
-    PVector.prototype.normalize = PVector.prototype.norm;
-    PVector.prototype.substract = PVector.prototype.sub;
-    PVector.prototype.substractX = PVector.prototype.subX;
-    PVector.prototype.substractY = PVector.prototype.subY;
-    PVector.prototype.substractZ = PVector.prototype.subZ;
-    PVector.prototype.multiply = PVector.prototype.mult;
-    PVector.prototype.multiplyX = PVector.prototype.multX;
-    PVector.prototype.multiplyY = PVector.prototype.multY;
-    PVector.prototype.multiplyZ = PVector.prototype.multZ;
-    PVector.prototype.divide = PVector.prototype.div;
-    PVector.prototype.divideX = PVector.prototype.divX;
-    PVector.prototype.divideY = PVector.prototype.divY;
-    PVector.prototype.divideZ = PVector.prototype.divZ;
-    PVector.prototype.mix = PVector.prototype.lerp;
-    PVector.prototype.mixX = PVector.prototype.lerpX;
-    PVector.prototype.mixY = PVector.prototype.lerpY;
-    PVector.prototype.mixZ = PVector.prototype.lerpZ;
-    PVector.prototype.magnitude = PVector.prototype.mag;
-    PVector.prototype.magnitudeSq = PVector.prototype.magSq;
-*/
 
 function createPVectorMethod( method ) {
     return function( v1, v2 ) {
