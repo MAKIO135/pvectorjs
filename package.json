@@ -16,7 +16,7 @@
     "url": "git://github.com/makio135/pvectorjs.git"
   },
   "scripts": {
-    "build": "(echo '/*!' ; cat ./LICENSE ; echo '*/' ; browserify index.js --standalone PVector) > build/pvector.js",
+    "build": "(echo '/*' ; cat ./LICENSE ; echo '*/' ; browserify index.js --standalone PVector) > build/pvector.js",
     "min": "cat build/pvector.js | uglifyjs -mc --comments '/^!/' > build/pvector.min.js",
     "doc": "markdox index.js -o documentation/api.md",
     "test": "mocha --ui bdd --reporter spec",
