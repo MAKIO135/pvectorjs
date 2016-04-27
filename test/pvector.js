@@ -239,7 +239,7 @@ describe( 'Prototype methods', function() {
             var vec1, vec2;
 
             before( function () {
-                vec1 = new PVector( 42, 21 );
+                vec1 = PVector( 42, 21 );
                 vec2 = vec1.clone();
             } );
 
@@ -501,8 +501,8 @@ describe( 'Prototype methods', function() {
             var v1, v2;
 
             before( function() {
-                v1 = new PVector( 4, 5, 3 ).setMag( 10 );
-                v2 = new PVector( 4, 5, 3 ).setMag( PVector( 11, 0, 0 ) );
+                v1 = PVector( 4, 5, 3 ).setMag( 10 );
+                v2 = PVector( 4, 5, 3 ).setMag( PVector( 11, 0, 0 ) );
             } );
 
             it( 'should return an instance of PVector', function() {
@@ -520,9 +520,9 @@ describe( 'Prototype methods', function() {
             var v1, v2, v3;
 
             before( function() {
-                v1 = new PVector( 4, 5, 3 ).minMag( 10 );
-                v2 = new PVector( 11, 0, 0 ).minMag( 10 );
-                v3 = new PVector( 4, 5, 3 ).minMag( new PVector( 0, 0, 15 ) );
+                v1 = PVector( 4, 5, 3 ).minMag( 10 );
+                v2 = PVector( 11, 0, 0 ).minMag( 10 );
+                v3 = PVector( 4, 5, 3 ).minMag( PVector( 0, 0, 15 ) );
             } );
 
             it( 'should return an instance of PVector', function() {
@@ -542,9 +542,9 @@ describe( 'Prototype methods', function() {
             var v1, v2, v3;
 
             before( function() {
-                v1 = new PVector( 4, 5, 3 ).maxMag( 5 );
-                v2 = new PVector( 11, 0, 0 ).maxMag( 15 );
-                v3 = new PVector( 4, 5, 3 ).maxMag( new PVector( 0, 0, 5 ) );
+                v1 = PVector( 4, 5, 3 ).maxMag( 5 );
+                v2 = PVector( 11, 0, 0 ).maxMag( 15 );
+                v3 = PVector( 4, 5, 3 ).maxMag( PVector( 0, 0, 5 ) );
             } );
 
             it( 'should return an instance of PVector', function() {
@@ -562,9 +562,9 @@ describe( 'Prototype methods', function() {
             var v1, v2, v3;
 
             before( function() {
-                v1 = new PVector( 4, 5, 3 ).clampMag( 10, 15 );
-                v2 = new PVector( 11, 0, 0 ).clampMag( 8, 10 );
-                v3 = new PVector( 54, 5, 3 ).clampMag( new PVector( 0, 0, 15 ), new PVector( 0, 35, 0 ) );
+                v1 = PVector( 4, 5, 3 ).clampMag( 10, 15 );
+                v2 = PVector( 11, 0, 0 ).clampMag( 8, 10 );
+                v3 = PVector( 54, 5, 3 ).clampMag( PVector( 0, 0, 15 ), PVector( 0, 35, 0 ) );
             } );
 
             it( 'should return an instance of PVector', function() {
@@ -580,6 +580,158 @@ describe( 'Prototype methods', function() {
             } );
         } );
 
+        describe( '#min()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).min( 4 );
+                v2 = PVector( 4, 5, 3 ).min( PVector( 2, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the minimum value for each axis', function() {
+                    expect( v1.toArray() ).to.eql( [ 4, 5, 4 ] );
+                    expect( v2.toArray() ).to.eql( [ 4, 6, 4 ] );
+            } );
+        } );
+
+        describe( '#minX()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).minX( 3 );
+                v2 = PVector( 4, 5, 3 ).minX( PVector( 5, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the minimum value for the X axis', function() {
+                    expect( v1.x ).to.eql( 4 );
+                    expect( v2.x ).to.eql( 5 );
+            } );
+        } );
+
+        describe( '#minY()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).minY( 3 );
+                v2 = PVector( 4, 5, 3 ).minY( PVector( 5, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the minimum value for the Y axis', function() {
+                    expect( v1.y ).to.eql( 5 );
+                    expect( v2.y ).to.eql( 6 );
+            } );
+        } );
+
+        describe( '#minZ()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).minZ( 3 );
+                v2 = PVector( 4, 5, 3 ).minZ( PVector( 5, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the minimum value for the Z axis', function() {
+                    expect( v1.z ).to.eql( 3 );
+                    expect( v2.z ).to.eql( 4 );
+            } );
+        } );
+
+        describe( '#max()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).max( 4 );
+                v2 = PVector( 4, 5, 3 ).max( PVector( 2, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the maximum value for each axis', function() {
+                    expect( v1.toArray() ).to.eql( [ 4, 4, 3 ] );
+                    expect( v2.toArray() ).to.eql( [ 2, 5, 3 ] );
+            } );
+        } );
+
+        describe( '#maxX()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).maxX( 3 );
+                v2 = PVector( 4, 5, 3 ).maxX( PVector( 5, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the maximum value for the X axis', function() {
+                    expect( v1.x ).to.eql( 3 );
+                    expect( v2.x ).to.eql( 4 );
+            } );
+        } );
+
+        describe( '#maxY()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).maxY( 3 );
+                v2 = PVector( 4, 5, 3 ).maxY( PVector( 5, 6, 4 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the maximum value for the Y axis', function() {
+                    expect( v1.y ).to.eql( 3 );
+                    expect( v2.y ).to.eql( 5 );
+            } );
+        } );
+
+        describe( '#maxZ()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).maxZ( 3 );
+                v2 = PVector( 4, 5, 3 ).maxZ( PVector( 5, 6, 2 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the maximum value for the Z axis', function() {
+                    expect( v1.z ).to.eql( 3 );
+                    expect( v2.z ).to.eql( 2 );
+            } );
+        } );
+
     } );
 
     describe( 'Utility methods', function() {
@@ -588,7 +740,7 @@ describe( 'Prototype methods', function() {
             var v1, mag, mag2, mag3;
 
             before( function() {
-                v1 = new PVector( 4, 3, 0 );
+                v1 = PVector( 4, 3, 0 );
                 mag = v1.mag();
                 mag2 = v1.mag( 10 ).mag();
                 mag3 = v1.mag( PVector(0,0,20) ).mag();
@@ -610,102 +762,6 @@ describe( 'Prototype methods', function() {
             } );
         } );
 
-        /*describe( '#magSq()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#dist()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#distX()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#distY()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#distZ()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#distSq()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#angle2D()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
-        /*describe( '#dot()', function() {
-            var v1;
-
-            before( function() {
-                v1 = new PVector( 100, 200, 300 );
-            } );
-
-            it( 'should', function() {
-
-            } );
-        } );*/
-
     } );
     
 
@@ -715,8 +771,8 @@ describe( 'Prototype methods', function() {
             var vec, vec2;
 
             before(function () {
-                vec = new PVector( 0.00001, 0.00001, 0.00001 );
-                vec2 = new PVector( 0.0001, 0.0001, 0.0001 );
+                vec = PVector( 0.00001, 0.00001, 0.00001 );
+                vec2 = PVector( 0.0001, 0.0001, 0.0001 );
             } );
 
             it('should return true if the vector is zero', function () {
@@ -729,9 +785,9 @@ describe( 'Prototype methods', function() {
             var vec1, vec2, vec3;
 
             before(function () {
-                vec1 = new PVector( 100, 100 );
-                vec2 = new PVector( 100, 120 );
-                vec3 = new PVector( 100, 120 );
+                vec1 = PVector( 100, 100 );
+                vec2 = PVector( 100, 120 );
+                vec3 = PVector( 100, 120 );
             } );
 
             it('should return false if the vectors are not the same', function () {
@@ -750,7 +806,7 @@ describe( 'Prototype methods', function() {
             var vec, ret;
 
             before( function() {
-                vec = new PVector( 100, 200 );
+                vec = PVector( 100, 200 );
                 ret = vec.toString();
             } );
 
@@ -764,7 +820,7 @@ describe( 'Prototype methods', function() {
             var vec, ret;
 
             before(function () {
-                vec = new PVector(100, 200);
+                vec = PVector(100, 200);
                 ret = vec.toObject();
             });
 
@@ -778,7 +834,7 @@ describe( 'Prototype methods', function() {
             var vec, ret;
 
             before(function () {
-                vec = new PVector( 100, 200 );
+                vec = PVector( 100, 200 );
                 ret = vec.toArray();
             });
 
