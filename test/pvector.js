@@ -809,10 +809,10 @@ describe( 'Prototype methods', function() {
         } );
 
         describe( '#rotateTo()', function() {
-            var v1;
+            var v1, mag;
 
             before( function() {
-                v1 = PVector( 10, 10, 0 );
+                v1 = PVector( 10, -10, 0 );
                 mag = v1.mag();
                 v1.rotateTo( Math.PI / 4 );
             } );
@@ -822,7 +822,7 @@ describe( 'Prototype methods', function() {
             } );
 
             it( 'should rotate the vector to the angle passed while keeping its magnitude', function() {
-                expect( v1.toFixed( 5 ).toArray() ).to.eql( [ 10, -10, 0 ] );
+                expect( v1.toFixed( 5 ).toArray() ).to.eql( [ 10, 10, 0 ] );
             } );
         } );
 
@@ -838,10 +838,93 @@ describe( 'Prototype methods', function() {
             } );
 
             it( 'should add the angle passed to the rotation of the vector while keeping its magnitude', function() {
-                expect( v1.toFixed( 5 ).toArray() ).to.eql( [ 10, -10, 0 ] );
+                expect( v1.toFixed( 5 ).toArray() ).to.eql( [ -10, 10, 0 ] );
             } );
         } );
 
+        describe( '#round()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4.213, 5.455, 3.687 ).round();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should round axis values', function() {
+                expect( v1.toArray() ).to.eql( [ 4, 5, 4 ] );
+            } );
+        } );
+
+        describe( '#floor()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4.213, 5.455, 3.687 ).floor();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should floor axis values', function() {
+                expect( v1.toArray() ).to.eql( [ 4, 5, 3 ] );
+            } );
+        } );
+
+        describe( '#ceil()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4.213, 5.455, 3.687 ).ceil();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ceil axis values', function() {
+                expect( v1.toArray() ).to.eql( [ 5, 6, 4 ] );
+            } );
+        } );
+
+        describe( '#toFixed()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4.211233, 5.445645, 3.687527 ).toFixed( 3 );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should round axis values to a certain precision', function() {
+                expect( v1.toArray() ).to.eql( [ 4.211, 5.446, 3.688 ] );
+            } );
+        } );
+
+        describe( '#zero()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4.211233, 5.445645, 3.687527 ).zero();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should have axis values equal to 0', function() {
+                expect( v1.toArray() ).to.eql( [ 0, 0, 0 ] );
+            } );
+        } );
+
+    } );
+
+    describe( 'Vector operations methods', function() {
     } );
 
     describe( 'Utility methods', function() {
@@ -869,9 +952,150 @@ describe( 'Prototype methods', function() {
             } );
         } );
 
+        describe( '#magSq()', function() {
+            var v1, magSq;
+
+            before( function() {
+                v1 = PVector( 10, 10, 25 );
+                magSq = v1.magSq();
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof magSq ).to.eql( 'number' );
+            } );
+
+            it( 'should return the squared magnitude of the vector', function() {
+                expect( magSq ).to.eql( 825 );
+            } );
+        } );
+
+        describe( '#dist()', function() {
+            var v1,  v2, dist;
+
+            before( function() {
+                v1 = new PVector( 100, 50 );
+                v2 = new PVector( 200, 60 );
+                dist = v1.dist( v2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof dist ).to.eql( 'number' );
+            } );
+
+            it( 'should return the euclidean distance between this vector and another', function() {
+                expect( parseFloat( dist.toFixed( 1 ) ) ).to.eql( 100.5 );
+            } );
+        } );
+
+        describe( '#distX()', function() {
+            var v1,  v2, dist;
+
+            before( function() {
+                v1 = new PVector( 100, 50, 30 );
+                v2 = new PVector( 200, 60, 10 );
+                dist = v1.distX( v2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof dist ).to.eql( 'number' );
+            } );
+
+            it( 'should return the distance on X axis between this vector and another', function() {
+                expect( dist ).to.eql( 100 );
+            } );
+        } );
+
+        describe( '#distY()', function() {
+            var v1,  v2, dist;
+
+            before( function() {
+                v1 = new PVector( 100, 50, 30 );
+                v2 = new PVector( 200, 60, 10 );
+                dist = v1.distY( v2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof dist ).to.eql( 'number' );
+            } );
+
+            it( 'should return the distance on Y axis between this vector and another', function() {
+                expect( dist ).to.eql( 10 );
+            } );
+        } );
+
+        describe( '#distZ()', function() {
+            var v1,  v2, dist;
+
+            before( function() {
+                v1 = new PVector( 100, 50, 30 );
+                v2 = new PVector( 200, 60, 10 );
+                dist = v1.distZ( v2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof dist ).to.eql( 'number' );
+            } );
+
+            it( 'should return the distance on Z axis between this vector and another', function() {
+                expect( dist ).to.eql( -20 );
+            } );
+        } );
+
+        describe( '#distSq()', function() {
+            var v1,  v2, dist;
+
+            before( function() {
+                v1 = new PVector( 100, 50, 30 );
+                v2 = new PVector( 200, 60, 20 );
+                dist = v1.distSq( v2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof dist ).to.eql( 'number' );
+            } );
+
+            it( 'should return the squared distance between this vector and another', function() {
+                expect( dist ).to.eql( 10100 );
+            } );
+        } );
+
+        describe( '#angle2D()', function() {
+            var v1, angle;
+
+            before( function() {
+                v1 = PVector( 5, 5 );
+                angle = v1.angle2D();
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof angle ).to.eql( 'number' );
+            } );
+
+            it( 'should return the angle 2D of the vector', function() {
+                expect( Math.abs( Math.PI / 4 - angle ) ).to.lte( EPSILON );
+            } );
+        } );
+
+        describe( '#dot()', function() {
+            var v1, v2, dot;
+
+            before( function() {
+                v1 = new PVector( 100, 50 );
+                v2 = new PVector( 200, 60 );
+                dot = v1.dot( v2 );
+            } );
+
+            it( 'should return a Number', function() {
+                expect( typeof dot ).to.eql( 'number' );
+            } );
+
+            it( 'should return the dot product of this vector and another', function() {
+                expect( dot ).to.eql( 23000 );
+            } );
+        } );
+
     } );
     
-
     describe( 'Comparison methods', function() {
 
         describe('#isZero()', function () {

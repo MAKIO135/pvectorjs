@@ -20,9 +20,9 @@
     "min": "cat build/pvector.js | uglifyjs -mc --comments '/^!/' > build/pvector.min.js",
     "doc": "markdox index.js -o documentation/api.md",
     "test": "mocha --ui bdd --reporter spec",
+    "watch-test": "onchange 'test/pvector.js' -- npm run test",
     "make": "npm run build && npm run test && npm run doc && npm run min",
-    "watch": "onchange 'index.js' -- npm run make",
-    "watch-test": "onchange 'test/pvector.js' -- npm run test"
+    "watch": "onchange 'index.js' -- npm run make"
   },
   "devDependencies": {
     "browserify": "^3.46.1",

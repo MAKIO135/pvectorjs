@@ -657,16 +657,46 @@ Adds the passed angle in radians to the vector's rotation(2D vectors only), whil
 
 * **PVector** `this`
 
-## PVector.prototype.unfloat()
+## PVector.prototype.round()
 
 Rounds each of this vector's axis to an integer value.
 
 ### Examples:
     var vec = new PVector( 100.2254, 50.9786 );
 
-    vec.unfloat();
+    vec.round();
+    console.log( vec.toString() );
+    // => "{ x: 100, y: 51, z: 0 }"
+
+### Return:
+
+* **PVector** `this`
+
+## PVector.prototype.floor()
+
+Floors each of this vector's axis to an integer value.
+
+### Examples:
+    var vec = new PVector( 100.2254, 50.9786 );
+
+    vec.floor();
     console.log( vec.toString() );
     // => "{ x: 100, y: 50, z: 0 }"
+
+### Return:
+
+* **PVector** `this`
+
+## PVector.prototype.ceil()
+
+Ceils each of this vector's axis to an integer value.
+
+### Examples:
+    var vec = new PVector( 100.2254, 50.9786 );
+
+    vec.ceil();
+    console.log( vec.toString() );
+    // => "{ x: 101, y: 51, z: 0 }"
 
 ### Return:
 

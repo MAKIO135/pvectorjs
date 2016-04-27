@@ -836,18 +836,60 @@ PVector.prototype = {
      * ### Examples:
      *     var vec = new PVector( 100.2254, 50.9786 );
      *
-     *     vec.unfloat();
+     *     vec.round();
      *     console.log( vec.toString() );
-     *     // => "{ x: 100, y: 50, z: 0 }"
+     *     // => "{ x: 100, y: 51, z: 0 }"
      *
-     * @name PVector.prototype.unfloat
+     * @name PVector.prototype.round
      * @return {PVector} `this`
      * @api public
      */
-    unfloat: function() {
+    round: function() {
         this.x = Math.round(this.x);
         this.y = Math.round(this.y);
         this.z = Math.round(this.z);
+        return this;
+    },
+
+    /**
+     * Floors each of this vector's axis to an integer value.
+     *
+     * ### Examples:
+     *     var vec = new PVector( 100.2254, 50.9786 );
+     *
+     *     vec.floor();
+     *     console.log( vec.toString() );
+     *     // => "{ x: 100, y: 50, z: 0 }"
+     *
+     * @name PVector.prototype.floor
+     * @return {PVector} `this`
+     * @api public
+     */
+    floor: function() {
+        this.x = Math.floor(this.x);
+        this.y = Math.floor(this.y);
+        this.z = Math.floor(this.z);
+        return this;
+    },
+
+    /**
+     * Ceils each of this vector's axis to an integer value.
+     *
+     * ### Examples:
+     *     var vec = new PVector( 100.2254, 50.9786 );
+     *
+     *     vec.ceil();
+     *     console.log( vec.toString() );
+     *     // => "{ x: 101, y: 51, z: 0 }"
+     *
+     * @name PVector.prototype.ceil
+     * @return {PVector} `this`
+     * @api public
+     */
+    ceil: function() {
+        this.x = Math.ceil(this.x);
+        this.y = Math.ceil(this.y);
+        this.z = Math.ceil(this.z);
         return this;
     },
 
@@ -870,6 +912,7 @@ PVector.prototype = {
         if (typeof precision === 'undefined') { precision = 8; }
         this.x = parseFloat( this.x.toFixed( precision ) );
         this.y = parseFloat( this.y.toFixed( precision ) );
+        this.z = parseFloat( this.z.toFixed( precision ) );
         return this;
     },
 
@@ -1445,7 +1488,7 @@ PVector.prototype = {
      * @api public
      */
     distX: function( vec ) {
-        return this.x - vec.x;
+        return vec.x - this.x;
     },
 
     /**
@@ -1457,7 +1500,7 @@ PVector.prototype = {
      * @api public
      */
     distY: function( vec ) {
-        return this.y - vec.y;
+        return vec.y - this.y;
     },
 
     /**
@@ -1469,7 +1512,7 @@ PVector.prototype = {
      * @api public
      */
     distZ: function( vec ) {
-        return this.z - vec.z;
+        return vec.z - this.z;
     },
 
     /**
@@ -1511,7 +1554,7 @@ PVector.prototype = {
         if( arguments[ 0 ] ){
             return this.rotateTo( arguments[ 0 ] );
         }
-        return Math.atan2( -this.y, this.x );
+        return Math.atan2( this.y, this.x );
     },
 
     /**
