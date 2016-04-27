@@ -1354,7 +1354,7 @@ describe( 'Prototype methods', function() {
                 middleRet = vec1.clone().projectOnto(vec2);
             });
 
-            it('should be chainable', function () {
+            it('should return an instance of PVector', function () {
                 expect(selfRet).to.equal(vec1);
             });
 
