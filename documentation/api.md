@@ -359,7 +359,7 @@ Sets this vector's magnitude to the passed value or to the passed vector's magni
 
     vec1.setMag( 10 );
     console.log( vec1.toArray() );
-    // => [ 0, 0, 0 ]
+    // => [ 3.481553119113957, 3.481553119113957, 8.703882797784892 ]
 
 ### Return:
 
@@ -1161,10 +1161,10 @@ Returns the vector's magnitude or alias of setMag if a value is passed as parame
 Returns the vector's squared magnitude.
 
 ### Examples:
-    var vec1 = new PVector( 4, 3 );
+    var vec1 = new PVector( 10, 10, 25 );
 
     console.log( vec1.magSq() );
-    // => 25
+    // => 825
 
 ### Return:
 

@@ -526,8 +526,8 @@ PVector.prototype = {
      * @api public
      */
     clampMag: function( min, max ) {
-        minMag( min );
-        maxMag( max );
+        this.minMag( min );
+        this.maxMag( max );
         return this;
     },
 
