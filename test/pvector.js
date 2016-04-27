@@ -925,6 +925,379 @@ describe( 'Prototype methods', function() {
     } );
 
     describe( 'Vector operations methods', function() {
+
+        describe( '#add()', function() {
+            var v1, v2, v3;
+
+            before( function() {
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().add( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().add( 5 );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should return the addition of another vector to this one or adds the given scalar to each vector\'s axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 30, y: 40, z: 35 }' );
+                expect( v3.toString() ).to.eql( '{ x: 35, y: 45, z: 40 }' );
+            } );
+        } );
+/*
+        describe( '#addX()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).addX();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#addY()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).addY();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#addZ()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).addZ();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#sub()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).sub();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#subX()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).subX();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#subY()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).subY();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#subZ()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).subZ();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#mult()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).mult();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#multX()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).multX();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#multY()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).multY();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#multZ()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).multZ();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#div()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).div();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#divX()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).divX();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#divY()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).divY();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#divZ()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).divZ();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#lerp()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).lerp();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#lerpX()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).lerpX();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#lerpY()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).lerpY();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#lerpZ()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).lerpZ();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#cross()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).cross();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#projectOnto()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).projectOnto();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+
+        describe( '#func()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 4, 5, 3 ).func();
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should ', function() {
+
+            } );
+        } );
+*/
     } );
 
     describe( 'Utility methods', function() {
