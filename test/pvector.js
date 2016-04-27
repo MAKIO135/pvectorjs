@@ -1341,21 +1341,42 @@ describe( 'Prototype methods', function() {
         } );
 
         describe( '#projectOnto()', function() {
-            var v1, v2;
+            var vec1, vec2, var3, selfRet, perpRet, paraRet, middleRet;
 
-            before( function() {
-                v1 = PVector( 100, 0 );
-                v2 = PVector( 100, 100 );
-                v1.projectOnto( v2 );
-            } );
+            before(function () {
+                vec1 = new PVector(100, 0);
+                vec2 = new PVector(100, 100);
+                vec3 = new PVector(0,100);
+                vec4 = new PVector(200,0);
+                selfRet = vec1.projectOnto(vec1);
+                perpRet = vec1.clone().projectOnto(vec3);
+                paraRet = vec1.clone().projectOnto(vec4);
+                middleRet = vec1.clone().projectOnto(vec2);
+            });
 
-            it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
-            } );
+            it('should be chainable', function () {
+                expect(selfRet).to.equal(vec1);
+            });
 
-            it( 'should project this vector onto another vector, setting itself to the result', function() {
-                expect( v1.toArray() ).to.eql( [ 50, 50, 0 ]);
-            } );
+            it('should project same vector onto itself without change', function() {
+                expect(selfRet).to.have.property('x',100);
+                expect(selfRet).to.have.property('y',0);
+            });
+
+            it('should project orthogonal vectors into a zero-length vector', function () {
+                expect(perpRet).to.have.property('x',0);
+                expect(perpRet).to.have.property('y',0);
+            });
+
+            it('should project parallel vectors into a vector of same direction and magnitude', function () {
+                expect(paraRet).to.have.property('x', 100);
+                expect(paraRet).to.have.property('y', 0);
+            });
+
+            it('should project non-orthogonal non-parallel vectors correctly', function () {
+                expect(middleRet).to.have.property('x', 50);
+                expect(middleRet).to.have.property('y', 50);
+            });
         } );
 
         describe( '#func()', function() {
