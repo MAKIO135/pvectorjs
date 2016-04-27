@@ -1102,7 +1102,7 @@ Same as lerpX with Z axis.
 
 ## PVector.prototype.cross(vec)
 
-Calculates and returns a vector composed of the cross product between two vectors.
+Calculates and returns a vector composed of the cross product between two vectors, setting itself to the result.
 
 ### Examples:
     var vec = new PVector( 10, 20, 2 );
@@ -1110,7 +1110,7 @@ Calculates and returns a vector composed of the cross product between two vector
 
     vec.cross( vec2 );
     console.log( vec.toArray() );
-    // => "[ -40.0, 60.0, -400.0 ]"
+    // => "[ -40, 360, -24800 ]"
 
 ### Params:
 
@@ -1122,7 +1122,7 @@ Calculates and returns a vector composed of the cross product between two vector
 
 ## PVector.prototype.projectOnto(vec)
 
-Projects a vector onto another vector, setting itself to the result.
+Projects this vector onto another vector, setting itself to the result.
 
 ### Examples:
     var vec = new PVector( 100, 0 );

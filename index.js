@@ -1270,10 +1270,10 @@ PVector.prototype = {
      * @return {PVector} `this`
      * @api public
      */
-    lerp: function( vec, amount ){
-        this.lerpX( vec, amount );
-        this.lerpY( vec, amount );
-        this.lerpZ( vec, amount );
+    lerp: function( vec_or_scal, amount ){
+        this.lerpX( vec_or_scal, amount );
+        this.lerpY( vec_or_scal, amount );
+        this.lerpZ( vec_or_scal, amount );
         return this;
     },
 
@@ -1332,7 +1332,7 @@ PVector.prototype = {
     },
 
     /**
-     * Calculates and returns a vector composed of the cross product between two vectors.
+     * Calculates and returns a vector composed of the cross product between two vectors, setting itself to the result.
      *
      * ### Examples:
      *     var vec = new PVector( 10, 20, 2 );
@@ -1340,7 +1340,7 @@ PVector.prototype = {
      *
      *     vec.cross( vec2 );
      *     console.log( vec.toArray() );
-     *     // => "[ -40.0, 60.0, -400.0 ]"
+     *     // => "[ -40, 360, -24800 ]"
      *
      * @name PVector.prototype.cross
      * @param {PVector} vec The vector to calculate the cross product
@@ -1348,14 +1348,14 @@ PVector.prototype = {
      * @api public
      */
     cross: function( vec ) {
-        this.x = y * vec.z - vec.y * z;
-        this.y = z * vec.x - vec.z * x;
-        this.z = x * vec.y - vec.x * y;
+        this.x = this.y * vec.z - vec.y * this.z;
+        this.y = this.z * vec.x - vec.z * this.x;
+        this.z = this.x * vec.y - vec.x * this.y;
         return this;
     },
 
     /**
-     * Projects a vector onto another vector, setting itself to the result.
+     * Projects this vector onto another vector, setting itself to the result.
      *
      * ### Examples:
      *     var vec = new PVector( 100, 0 );
@@ -1372,9 +1372,9 @@ PVector.prototype = {
      */
     projectOnto: function( vec ) {
         var coeff = ( ( this.x * vec.x ) + ( this.y * vec.y ) + ( this.z * vec.z) ) / ( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
-        this.x = coeff * vec2.x;
-        this.y = coeff * vec2.y;
-        this.z = coeff * vec2.z;
+        this.x = coeff * vec.x;
+        this.y = coeff * vec.y;
+        this.z = coeff * vec.z;
         return this;
     },
 

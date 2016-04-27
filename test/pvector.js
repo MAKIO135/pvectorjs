@@ -1165,164 +1165,196 @@ describe( 'Prototype methods', function() {
                 expect( v3.toString() ).to.eql( '{ x: 1, y: 2, z: 50 }' );
             } );
         } );
-/*
+
         describe( '#div()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).div();
+                v1 = PVector( 20, 30, 10 );
+                v2 = v1.clone().div( PVector( 10, 10, 5 ) );
+                v3 = v2.clone().div( 2 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should divide this vector\'s axis by another\'s ones or by the given scalar', function() {
+                expect( v2.toString() ).to.eql( '{ x: 2, y: 3, z: 2 }' );
+                expect( v3.toString() ).to.eql( '{ x: 1, y: 1.5, z: 1 }' );
             } );
         } );
 
         describe( '#divX()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).divX();
+                v1 = PVector( 20, 30, 10 );
+                v2 = v1.clone().divX( PVector( 10, 10, 5 ) );
+                v3 = v2.clone().divX( 2 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should divide this vector\'s X axis by another one\'s or by the given scalar', function() {
+                expect( v2.toString() ).to.eql( '{ x: 2, y: 30, z: 10 }' );
+                expect( v3.toString() ).to.eql( '{ x: 1, y: 30, z: 10 }' );
             } );
         } );
 
         describe( '#divY()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).divY();
+                v1 = PVector( 20, 30, 10 );
+                v2 = v1.clone().divY( PVector( 10, 10, 5 ) );
+                v3 = v2.clone().divY( 2 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should divide this vector\'s Y axis by another one\'s or by the given scalar', function() {
+                expect( v2.toString() ).to.eql( '{ x: 20, y: 3, z: 10 }' );
+                expect( v3.toString() ).to.eql( '{ x: 20, y: 1.5, z: 10 }' );
             } );
         } );
 
         describe( '#divZ()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).divZ();
+                v1 = PVector( 20, 30, 10 );
+                v2 = v1.clone().divZ( PVector( 10, 10, 5 ) );
+                v3 = v2.clone().divZ( 2 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should divide this vector\'s Z axis by another one\'s or by the given scalar', function() {
+                expect( v2.toString() ).to.eql( '{ x: 20, y: 30, z: 2 }' );
+                expect( v3.toString() ).to.eql( '{ x: 20, y: 30, z: 1 }' );
             } );
         } );
 
         describe( '#lerp()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).lerp();
+                v1 = PVector( 10, 15, 20 );
+                v2 = v1.clone().lerp( PVector( 20, 20, 10 ), 0.5 );
+                v3 = v1.clone().lerp( 30, 0.5 );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should perform a linear interpolation towards another vector\'s axis', function() {
+                expect( v2.toArray() ).to.eql( [ 15, 17.5, 15 ] );
+                expect( v3.toArray() ).to.eql( [ 20, 22.5, 25 ] );
             } );
         } );
 
         describe( '#lerpX()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).lerpX();
+                v1 = PVector( 10, 15, 20 );
+                v2 = v1.clone().lerpX( PVector( 20, 20, 10 ), 0.5 );
+                v3 = v1.clone().lerpX( 30, 0.5 );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should perform a linear interpolation towards another vector\'s X axis', function() {
+                expect( v2.toArray() ).to.eql( [ 15, 15, 20 ] );
+                expect( v3.toArray() ).to.eql( [ 20, 15, 20 ] );
             } );
         } );
-
+        
         describe( '#lerpY()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).lerpY();
+                v1 = PVector( 10, 15, 20 );
+                v2 = v1.clone().lerpY( PVector( 20, 20, 10 ), 0.5 );
+                v3 = v1.clone().lerpY( 30, 0.5 );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should perform a linear interpolation towards another vector\'s Y axis', function() {
+                expect( v2.toArray() ).to.eql( [ 10, 17.5, 20 ] );
+                expect( v3.toArray() ).to.eql( [ 10, 22.5, 20 ] );
             } );
         } );
-
+        
         describe( '#lerpZ()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).lerpZ();
+                v1 = PVector( 10, 15, 20 );
+                v2 = v1.clone().lerpZ( PVector( 20, 20, 10 ), 0.5 );
+                v3 = v1.clone().lerpZ( 30, 0.5 );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should perform a linear interpolation towards another vector\'s Z axis', function() {
+                expect( v2.toArray() ).to.eql( [ 10, 15, 15 ] );
+                expect( v3.toArray() ).to.eql( [ 10, 15, 25 ] );
             } );
         } );
 
         describe( '#cross()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).cross();
+                v1 = PVector( 10, 20, 2 );
+                v2 = PVector( 60, 80, 6 );
+                v3 = v1.clone().cross( v2 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should return a vector composed of the cross product between two vectors.', function() {
+                expect( v3.toArray() ).to.eql( [ -40, 360, -24800 ]);
             } );
         } );
 
         describe( '#projectOnto()', function() {
-            var v1;
+            var v1, v2;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).projectOnto();
+                v1 = PVector( 100, 0 );
+                v2 = PVector( 100, 100 );
+                v1.projectOnto( v2 );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should project this vector onto another vector, setting itself to the result', function() {
+                expect( v1.toArray() ).to.eql( [ 50, 50, 0 ]);
             } );
         } );
 
@@ -1330,18 +1362,24 @@ describe( 'Prototype methods', function() {
             var v1;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).func();
+                function double( vec ){
+                    vec.x *= 2;
+                    vec.y *= 2;
+                    vec.z *= 2;
+                };
+
+                v1 = PVector( 4, 5, 3 ).func( double );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should apply a function taking a vector as argument to this vector', function() {
+                expect( v1.toArray() ).to.eql( [ 8, 10, 6 ]);
             } );
         } );
-*/
+
     } );
 
     describe( 'Utility methods', function() {
