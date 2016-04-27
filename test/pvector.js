@@ -41,7 +41,7 @@ describe( 'Static methods', function() {
                 } );
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v ).to.be.an.instanceof( PVector );
                 expect( vec1a ).to.be.an.instanceof( PVector );
                 expect( vec1b ).to.be.an.instanceof( PVector );
@@ -267,7 +267,7 @@ describe( 'Prototype methods', function() {
                 v3 = PVector().set( { x: x, y: y, z: z } );
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
                 expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
@@ -301,7 +301,7 @@ describe( 'Prototype methods', function() {
                 v3 = PVector().setX( { x: x, y: y, z: z } );
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
                 expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
@@ -335,7 +335,7 @@ describe( 'Prototype methods', function() {
                 v3 = PVector().setY( { x: x, y: y, z: z } );
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
                 expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
@@ -369,7 +369,7 @@ describe( 'Prototype methods', function() {
                 v3 = PVector().setZ( { x: x, y: y, z: z } );
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
                 expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
@@ -401,7 +401,7 @@ describe( 'Prototype methods', function() {
                 v1 = PVector( x, y, z ).invert();
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
@@ -423,7 +423,7 @@ describe( 'Prototype methods', function() {
                 v1 = PVector( x, y, z ).invertX();
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
@@ -445,7 +445,7 @@ describe( 'Prototype methods', function() {
                 v1 = PVector( x, y, z ).invertY();
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
@@ -467,7 +467,7 @@ describe( 'Prototype methods', function() {
                 v1 = PVector( x, y, z ).invertZ();
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
@@ -485,7 +485,7 @@ describe( 'Prototype methods', function() {
                 v1 = PVector( 100, 200, 300 ).norm();
             } );
 
-            it( 'should be an instance of PVector', function() {
+            it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
             } );
 
@@ -494,6 +494,89 @@ describe( 'Prototype methods', function() {
                 expect( Math.abs( v1.y - 0.5345224838248488 ) ).to.lte( EPSILON );
                 expect( Math.abs( v1.z - 0.8017837257372732 ) ).to.lte( EPSILON );
                 expect( Math.abs( v1.mag() - 1 ) ).to.lte( EPSILON );
+            } );
+        } );
+
+        describe( '#setMag()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = new PVector( 4, 5, 3 ).setMag( 10 );
+                v2 = new PVector( 4, 5, 3 ).setMag( PVector( 11, 0, 0 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should set the vector\'s magnitude to the passed value or magnitude of the passed vector', function() {
+                expect( Math.abs( 10 - v1.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 11 - v2.mag() ) ).to.lte( EPSILON );
+            } );
+        } );
+
+        describe( '#minMag()', function() {
+            var v1, v2, v3;
+
+            before( function() {
+                v1 = new PVector( 4, 5, 3 ).minMag( 10 );
+                v2 = new PVector( 11, 0, 0 ).minMag( 10 );
+                v3 = new PVector( 4, 5, 3 ).minMag( new PVector( 0, 0, 15 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should modify the vector if its magnitude is less than the passed value or magnitude of the passed vector', function() {
+                expect( Math.abs( 10 - v1.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 11 - v2.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 15 - v3.mag() ) ).to.lte( EPSILON );
+            } );
+        } );
+
+        describe( '#maxMag()', function() {
+            var v1, v2, v3;
+
+            before( function() {
+                v1 = new PVector( 4, 5, 3 ).maxMag( 5 );
+                v2 = new PVector( 11, 0, 0 ).maxMag( 15 );
+                v3 = new PVector( 4, 5, 3 ).maxMag( new PVector( 0, 0, 5 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should modify the vector if its magnitude is greater than the passed value', function() {
+                expect( Math.abs( 5 - v1.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 11 - v2.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 5 - v3.mag() ) ).to.lte( EPSILON );
+            } );
+        } );
+
+        describe( '#clampMag()', function() {
+            var v1, v2, v3;
+
+            before( function() {
+                v1 = new PVector( 4, 5, 3 ).clampMag( 10, 15 );
+                v2 = new PVector( 11, 0, 0 ).clampMag( 8, 10 );
+                v3 = new PVector( 54, 5, 3 ).clampMag( new PVector( 0, 0, 15 ), new PVector( 0, 35, 0 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should constrain the vector\'s magnitude between the passed values or magnitudes of the passed vectors', function() {
+                expect( Math.abs( 10 - v1.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 10 - v2.mag() ) ).to.lte( EPSILON );
+                expect( Math.abs( 35 - v3.mag() ) ).to.lte( EPSILON );
             } );
         } );
 

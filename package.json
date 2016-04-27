@@ -21,7 +21,8 @@
     "doc": "markdox index.js -o documentation/api.md",
     "test": "mocha --ui bdd --reporter spec",
     "make": "npm run build && npm run test && npm run doc && npm run min",
-    "watch": "onchange 'index.js' -- npm run make"
+    "watch": "onchange 'index.js' -- npm run make",
+    "watch-test": "onchange 'test/pvector.js' -- npm run test"
   },
   "devDependencies": {
     "browserify": "^3.46.1",

@@ -451,7 +451,7 @@ PVector.prototype = {
      *
      *     vec1.setMag( 10 );
      *     console.log( vec1.toArray() );
-     *     // => [ 0, 0, 0 ]
+     *     // => [ 3.481553119113957, 3.481553119113957, 8.703882797784892 ]
      *
      * @name PVector.prototype.setMag
      * @return {PVector} `this`
@@ -489,7 +489,7 @@ PVector.prototype = {
             vec_or_scal = vec_or_scal.mag();
         }
         if ( this.magSq() < vec_or_scal * vec_or_scal ) {
-            this.normalize();
+            this.norm();
             this.mult( vec_or_scal );
         }
         return this;
@@ -515,7 +515,7 @@ PVector.prototype = {
             vec_or_scal = vec_or_scal.mag();
         }
         if ( this.magSq() > vec_or_scal * vec_or_scal ) {
-            this.normalize();
+            this.norm();
             this.mult( vec_or_scal );
         }
         return this;
@@ -1406,10 +1406,10 @@ PVector.prototype = {
      * Returns the vector's squared magnitude.
      *
      * ### Examples:
-     *     var vec1 = new PVector( 4, 3 );
+     *     var vec1 = new PVector( 10, 10, 25 );
      *
      *     console.log( vec1.magSq() );
-     *     // => 25
+     *     // => 825
      *     
      * @name PVector.prototype.magSq
      * @return {Number} magnitude
