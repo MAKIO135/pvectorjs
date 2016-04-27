@@ -808,7 +808,39 @@ describe( 'Prototype methods', function() {
             } );
         } );
 
+        describe( '#rotateTo()', function() {
+            var v1;
 
+            before( function() {
+                v1 = PVector( 10, 10, 0 );
+                mag = v1.mag();
+                v1.rotateTo( Math.PI / 4 );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should rotate the vector to the angle passed while keeping its magnitude', function() {
+                expect( v1.toFixed( 5 ).toArray() ).to.eql( [ 10, -10, 0 ] );
+            } );
+        } );
+
+        describe( '#rotateBy()', function() {
+            var v1;
+
+            before( function() {
+                v1 = PVector( 10, 10, 0 ).rotateBy( Math.PI / 2 );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should add the angle passed to the rotation of the vector while keeping its magnitude', function() {
+                expect( v1.toFixed( 5 ).toArray() ).to.eql( [ 10, -10, 0 ] );
+            } );
+        } );
 
     } );
 
