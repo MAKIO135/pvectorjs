@@ -732,6 +732,84 @@ describe( 'Prototype methods', function() {
             } );
         } );
 
+        describe( '#clamp()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 8, 3 ).clamp( 4, 6 );
+                v2 = PVector( 4, 8, 3 ).clamp( PVector( 2, 6, 4 ), PVector( 3, 7, 5 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should constrain the value of each axis', function() {
+                    expect( v1.toArray() ).to.eql( [ 4, 6, 4 ] );
+                    expect( v2.toArray() ).to.eql( [ 3, 7, 4 ] );
+            } );
+        } );
+
+        describe( '#clampX()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 8, 3 ).clampX( 4, 6 );
+                v2 = PVector( 4, 8, 3 ).clampX( PVector( 2, 6, 4 ), PVector( 3, 7, 5 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should constrain the value of X axis', function() {
+                    expect( v1.toArray() ).to.eql( [ 4, 8, 3 ] );
+                    expect( v2.toArray() ).to.eql( [ 3, 8, 3 ] );
+            } );
+        } );
+
+        describe( '#clampY()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 8, 3 ).clampY( 4, 6 );
+                v2 = PVector( 4, 8, 3 ).clampY( PVector( 2, 6, 4 ), PVector( 3, 7, 5 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should constrain the value of Y axis', function() {
+                    expect( v1.toArray() ).to.eql( [ 4, 6, 3 ] );
+                    expect( v2.toArray() ).to.eql( [ 4, 7, 3 ] );
+            } );
+        } );
+
+        describe( '#clampZ()', function() {
+            var v1, v2;
+
+            before( function() {
+                v1 = PVector( 4, 8, 3 ).clampZ( 4, 6 );
+                v2 = PVector( 4, 8, 3 ).clampZ( PVector( 2, 6, 4 ), PVector( 3, 7, 5 ) );
+            } );
+
+            it( 'should return an instance of PVector', function() {
+                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+            } );
+
+            it( 'should constrain the value of Z axis', function() {
+                    expect( v1.toArray() ).to.eql( [ 4, 8, 4 ] );
+                    expect( v2.toArray() ).to.eql( [ 4, 8, 4 ] );
+            } );
+        } );
+
+
+
     } );
 
     describe( 'Utility methods', function() {
@@ -752,11 +830,8 @@ describe( 'Prototype methods', function() {
                 expect( typeof mag3 ).to.eql( 'number' );
             } );
 
-            it( 'should return the magnitude of the vector', function() {
-                expect( mag ).to.eql( 5 );
-            } );
-
             it( 'should set the magnitude if a value or a vector is passed', function() {
+                expect( mag ).to.eql( 5 );
                 expect( mag2 ).to.eql( 10 );
                 expect( mag3 ).to.eql( 20 );
             } );
@@ -811,38 +886,38 @@ describe( 'Prototype methods', function() {
             } );
 
             it( 'should return a string representation of the vector', function () {
-                expect( ret).to.be.a( 'string');
-                expect(ret).to.have.string('{ x: 100, y: 200, z: 0 }');
+                expect( ret ).to.be.a( 'string' );
+                expect( ret ).to.have.string( '{ x: 100, y: 200, z: 0 }' );
             } );
         } );
 
-        describe('#toObject()', function () {
+        describe( '#toObject()', function () {
             var vec, ret;
 
-            before(function () {
-                vec = PVector(100, 200);
+            before( function() {
+                vec = PVector( 100, 200 );
                 ret = vec.toObject();
-            });
+            } );
 
-            it('should return an object representation of the vector', function () {
-                expect(ret).to.be.instanceof(Object);
-                expect(ret).to.eql({ x: 100, y: 200, z: 0 });
-            });
-        });
+            it( 'should return an object representation of the vector', function() {
+                expect( ret ).to.be.instanceof( Object );
+                expect( ret ).to.eql( { x: 100, y: 200, z: 0 } );
+            } );
+        } );
 
         describe( '#toArray()', function () {
             var vec, ret;
 
-            before(function () {
+            before( function() {
                 vec = PVector( 100, 200 );
                 ret = vec.toArray();
-            });
+            } );
 
-            it('should return an array representation of the vector', function () {
-                expect(ret).to.be.instanceof(Array);
-                expect(ret).to.eql([ 100, 200, 0 ]);
-            });
-        });
+            it( 'should return an array representation of the vector', function() {
+                expect( ret ).to.be.instanceof( Array );
+                expect( ret ).to.eql( [ 100, 200, 0 ] );
+            } );
+        } );
     
     } );
 
