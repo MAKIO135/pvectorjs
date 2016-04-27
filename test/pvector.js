@@ -940,188 +940,232 @@ describe( 'Prototype methods', function() {
                 expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should return the addition of another vector to this one or adds the given scalar to each vector\'s axis', function() {
+            it( 'should add another vector\'s axis or the given scalar to each vector\'s axis', function() {
                 expect( v2.toString() ).to.eql( '{ x: 30, y: 40, z: 35 }' );
                 expect( v3.toString() ).to.eql( '{ x: 35, y: 45, z: 40 }' );
             } );
         } );
-/*
+
         describe( '#addX()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).addX();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().addX( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().addX( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should add another vector\'s X axis or the given scalar to this vector\'s X axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 30, y: 10, z: 25 }' );
+                expect( v3.toString() ).to.eql( '{ x: 35, y: 10, z: 25 }' );
             } );
         } );
 
         describe( '#addY()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).addY();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().addY( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().addY( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should add another vector\'s Y axis or the given scalar to this vector\'s Y axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 10, y: 40, z: 25 }' );
+                expect( v3.toString() ).to.eql( '{ x: 10, y: 45, z: 25 }' );
             } );
         } );
 
         describe( '#addZ()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).addZ();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().addZ( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().addZ( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should add another vector\'s Y axis or the given scalar to this vector\'s Y axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 10, y: 10, z: 35 }' );
+                expect( v3.toString() ).to.eql( '{ x: 10, y: 10, z: 40 }' );
             } );
         } );
 
         describe( '#sub()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).sub();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().sub( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().sub( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should substract another vector\'s axis or the given scalar from each vector\'s axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: -10, y: -20, z: 15 }' );
+                expect( v3.toString() ).to.eql( '{ x: -15, y: -25, z: 10 }' );
             } );
         } );
 
         describe( '#subX()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).subX();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().subX( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().subX( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should substract another vector\'s X axis or the given scalar from this vector\'s X axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: -10, y: 10, z: 25 }' );
+                expect( v3.toString() ).to.eql( '{ x: -15, y: 10, z: 25 }' );
             } );
         } );
 
         describe( '#subY()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).subY();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().subY( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().subY( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should add another vector\'s Y axis or the given scalar to this vector\'s Y axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 10, y: -20, z: 25 }' );
+                expect( v3.toString() ).to.eql( '{ x: 10, y: -25, z: 25 }' );
             } );
         } );
 
         describe( '#subZ()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).subZ();
+                v1 = PVector( 10, 10, 25 );
+                v2 = v1.clone().subZ( PVector( 20, 30, 10 ) );
+                v3 = v2.clone().subZ( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should add another vector\'s Y axis or the given scalar to this vector\'s Y axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 10, y: 10, z: 15 }' );
+                expect( v3.toString() ).to.eql( '{ x: 10, y: 10, z: 10 }' );
             } );
         } );
 
         describe( '#mult()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).mult();
+                v1 = PVector( 1, 2, 5 );
+                v2 = v1.clone().mult( PVector( 2, 3, 2 ) );
+                v3 = v2.clone().mult( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should multiply another vector\'s axis or the given scalar with each vector\'s axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 2, y: 6, z: 10 }' );
+                expect( v3.toString() ).to.eql( '{ x: 10, y: 30, z: 50 }' );
             } );
         } );
 
         describe( '#multX()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).multX();
+                v1 = PVector( 1, 2, 5 );
+                v2 = v1.clone().multX( PVector( 2, 3, 2 ) );
+                v3 = v2.clone().multX( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should substract another vector\'s X axis or the given scalar from this vector\'s X axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 2, y: 2, z: 5 }' );
+                expect( v3.toString() ).to.eql( '{ x: 10, y: 2, z: 5 }' );
             } );
         } );
 
         describe( '#multY()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).multY();
+                v1 = PVector( 1, 2, 5 );
+                v2 = v1.clone().multY( PVector( 2, 3, 2 ) );
+                v3 = v2.clone().multY( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should substract another vector\'s Y axis or the given scalar from this vector\'s Y axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 1, y: 6, z: 5 }' );
+                expect( v3.toString() ).to.eql( '{ x: 1, y: 30, z: 5 }' );
             } );
         } );
 
         describe( '#multZ()', function() {
-            var v1;
+            var v1, v2, v3;
 
             before( function() {
-                v1 = PVector( 4, 5, 3 ).multZ();
+                v1 = PVector( 1, 2, 5 );
+                v2 = v1.clone().multZ( PVector( 2, 3, 2 ) );
+                v3 = v2.clone().multZ( 5 );
             } );
 
             it( 'should return an instance of PVector', function() {
-                expect( v1 ).to.be.an.instanceof( PVector );
+                expect( v2 ).to.be.an.instanceof( PVector );
+                expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
-            it( 'should ', function() {
-
+            it( 'should substract another vector\'s Y axis or the given scalar from this vector\'s Y axis', function() {
+                expect( v2.toString() ).to.eql( '{ x: 1, y: 2, z: 10 }' );
+                expect( v3.toString() ).to.eql( '{ x: 1, y: 2, z: 50 }' );
             } );
         } );
-
+/*
         describe( '#div()', function() {
             var v1;
 
