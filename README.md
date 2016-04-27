@@ -33,6 +33,9 @@ var vec = new PVector( 42, 1337 );
 </script>
 ```
 
+# Documentation
+[ documentation/doc.md ](https://github.com/MAKIO135/pvectorjs/blob/master/documentation/doc.md)
+
 ## Build & test
 
 ```bash
