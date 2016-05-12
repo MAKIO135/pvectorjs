@@ -1,6 +1,6 @@
 {
   "name": "pvectorjs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A JavaScript 2D/3D vector class for common vector operations based on Processing.js PVector class and Victor.js",
   "keywords": [
     "vector",

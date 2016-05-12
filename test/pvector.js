@@ -9,7 +9,7 @@ describe( 'Static methods', function() {
 
         describe( '#PVector.Constructor', function() {
             var x, y, z;
-            var v, vec1a, vec1b, vec2a, vec2b, vec3a, vec3b, vec4a, vec4b;
+            var v, vec1a, vec1b, vec2a, vec2b, vec4a, vec4b;
 
             before( function() {
                 x = 100;
@@ -25,15 +25,12 @@ describe( 'Static methods', function() {
                 vec2a = PVector( x, y );
                 vec2b = PVector( x, y, z );
 
-                // Create a new vector from an array
-                vec3a = PVector( [ x, y ] );
-                vec3b = PVector( [ x, y, z ] );
-
                 // Create a new vector from an object
                 vec4a = PVector( {
                     x: x,
                     y: y
                 } );
+
                 vec4b = PVector( {
                     x: x,
                     y: y,
@@ -47,8 +44,6 @@ describe( 'Static methods', function() {
                 expect( vec1b ).to.be.an.instanceof( PVector );
                 expect( vec2a ).to.be.an.instanceof( PVector );
                 expect( vec2b ).to.be.an.instanceof( PVector );
-                expect( vec3a ).to.be.an.instanceof( PVector );
-                expect( vec3b ).to.be.an.instanceof( PVector );
                 expect( vec4a ).to.be.an.instanceof( PVector );
                 expect( vec4b ).to.be.an.instanceof( PVector );
             } );
@@ -73,14 +68,6 @@ describe( 'Static methods', function() {
                 expect( vec2b ).to.have.property( 'x', x );
                 expect( vec2b ).to.have.property( 'y', y );
                 expect( vec2b ).to.have.property( 'z', z );
-
-                expect( vec3a ).to.have.property( 'x', x );
-                expect( vec3a ).to.have.property( 'y', y );
-                expect( vec3a ).to.have.property( 'z', 0 );
-
-                expect( vec3b ).to.have.property( 'x', x );
-                expect( vec3b ).to.have.property( 'y', y );
-                expect( vec3b ).to.have.property( 'z', z );
 
                 expect( vec4a ).to.have.property(  'x', x  );
                 expect( vec4a ).to.have.property(  'y', y  );
@@ -255,7 +242,7 @@ describe( 'Prototype methods', function() {
         } );
 
         describe( '#set()', function() {
-            var v1, v2, v3, x, y, z;
+            var v1, v3, x, y, z;
 
             before( function() {
                 x = 100;
@@ -263,13 +250,11 @@ describe( 'Prototype methods', function() {
                 z = 300;
 
                 v1 = PVector().set( x, y, z );
-                v2 = PVector().set( [ x, y, z ] );
                 v3 = PVector().set( { x: x, y: y, z: z } );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
-                expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
@@ -278,10 +263,6 @@ describe( 'Prototype methods', function() {
                 expect( v1 ).to.have.property( 'y', y );
                 expect( v1 ).to.have.property( 'z', z );
 
-                expect( v2 ).to.have.property( 'x', x );
-                expect( v2 ).to.have.property( 'y', y );
-                expect( v2 ).to.have.property( 'z', z );
-
                 expect( v3 ).to.have.property( 'x', x );
                 expect( v3 ).to.have.property( 'y', y );
                 expect( v3 ).to.have.property( 'z', z );
@@ -289,7 +270,7 @@ describe( 'Prototype methods', function() {
         } );
 
         describe( '#setX()', function() {
-            var v1, v2, v3, x, y, z;
+            var v1, v3, x, y, z;
 
             before( function() {
                 x = 100;
@@ -297,13 +278,11 @@ describe( 'Prototype methods', function() {
                 z = 300;
 
                 v1 = PVector().setX( x );
-                v2 = PVector().setX( [ x, y, z ] );
                 v3 = PVector().setX( { x: x, y: y, z: z } );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
-                expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
@@ -312,10 +291,6 @@ describe( 'Prototype methods', function() {
                 expect( v1 ).to.have.property( 'y', 0 );
                 expect( v1 ).to.have.property( 'z', 0 );
 
-                expect( v2 ).to.have.property( 'x', x );
-                expect( v2 ).to.have.property( 'y', 0 );
-                expect( v2 ).to.have.property( 'z', 0 );
-
                 expect( v3 ).to.have.property( 'x', x );
                 expect( v3 ).to.have.property( 'y', 0 );
                 expect( v3 ).to.have.property( 'z', 0 );
@@ -323,7 +298,7 @@ describe( 'Prototype methods', function() {
         } );
 
         describe( '#setY()', function() {
-            var v1, v2, v3, x, y, z;
+            var v1, v3, x, y, z;
 
             before( function() {
                 x = 100;
@@ -331,13 +306,11 @@ describe( 'Prototype methods', function() {
                 z = 300;
 
                 v1 = PVector().setY( y );
-                v2 = PVector().setY( [ x, y, z ] );
                 v3 = PVector().setY( { x: x, y: y, z: z } );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
-                expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
@@ -346,10 +319,6 @@ describe( 'Prototype methods', function() {
                 expect( v1 ).to.have.property( 'y', y );
                 expect( v1 ).to.have.property( 'z', 0 );
 
-                expect( v2 ).to.have.property( 'x', 0 );
-                expect( v2 ).to.have.property( 'y', y );
-                expect( v2 ).to.have.property( 'z', 0 );
-
                 expect( v3 ).to.have.property( 'x', 0 );
                 expect( v3 ).to.have.property( 'y', y );
                 expect( v3 ).to.have.property( 'z', 0 );
@@ -357,7 +326,7 @@ describe( 'Prototype methods', function() {
         } );
 
         describe( '#setZ()', function() {
-            var v1, v2, v3, x, y, z;
+            var v1, v3, x, y, z;
 
             before( function() {
                 x = 100;
@@ -365,13 +334,11 @@ describe( 'Prototype methods', function() {
                 z = 300;
 
                 v1 = PVector().setZ( z );
-                v2 = PVector().setZ( [ x, y, z ] );
                 v3 = PVector().setZ( { x: x, y: y, z: z } );
             } );
 
             it( 'should return an instance of PVector', function() {
                 expect( v1 ).to.be.an.instanceof( PVector );
-                expect( v2 ).to.be.an.instanceof( PVector );
                 expect( v3 ).to.be.an.instanceof( PVector );
             } );
 
@@ -379,10 +346,6 @@ describe( 'Prototype methods', function() {
                 expect( v1 ).to.have.property( 'x', 0 );
                 expect( v1 ).to.have.property( 'y', 0 );
                 expect( v1 ).to.have.property( 'z', z );
-
-                expect( v2 ).to.have.property( 'x', 0 );
-                expect( v2 ).to.have.property( 'y', 0 );
-                expect( v2 ).to.have.property( 'z', z );
 
                 expect( v3 ).to.have.property( 'x', 0 );
                 expect( v3 ).to.have.property( 'y', 0 );

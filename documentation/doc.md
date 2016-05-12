@@ -4,7 +4,7 @@
 
 # PVectorjs - A JavaScript vector class for common vector operations based on Processing.js PVector class and PVector.js
 
-## PVector(vec_or_arr_or_x, y, z)
+## PVector(vec_or_x, y, z)
 
 Works without the `new` keyword.
 
@@ -18,11 +18,6 @@ Works without the `new` keyword.
     console.log( vec2.toString() );
     // => "{ x: 42, y: 17, z: 10 }"
 
-    // Create a new vector from an array with a length of 2 or 3:
-    var vec3 = PVector( [ 4, 12 ] );
-    console.log( vec3.toString() );
-    // => "{ x: 4, y: 12, z: 0 }"
-
     // Create a new vector from an object:
     var vec4 = PVector( { x: 30, y: 34, z: 20 } );
     console.log( vec4.toString() );
@@ -35,7 +30,7 @@ Works without the `new` keyword.
 
 ### Params:
 
-* **Object_or_Array_or_Number** *vec_or_arr_or_x* Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+* **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties or the value of the X axis
 * **Number** *y* Value of the Y axis
 * **Number** *z* Value of the Z axis
 
@@ -227,9 +222,9 @@ Creates a clone of this vector.
 
 * **PVector** cloneVec A clone of the vector
 
-## PVector.prototype.set(vec_or_arr_or_x, y, z)
+## PVector.prototype.set(vec_or_x, y, z)
 
-Sets this vector's components from an object, an array, a value or another vector by copying its components
+Sets this vector's components from an object, a value or another vector by copying its components
 
 ### Examples:
     var vec1 = new PVector( 10, 10, 50 );
@@ -241,7 +236,7 @@ Sets this vector's components from an object, an array, a value or another vecto
 
 ### Params:
 
-* **Object_or_Array_or_Number** *vec_or_arr_or_x* Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+* **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties or the value of the X axis
 * **Number** *y* Value of the y axis
 * **Number** *z* Value of the z axis
 
@@ -249,16 +244,14 @@ Sets this vector's components from an object, an array, a value or another vecto
 
 * **PVector** `this`
 
-## PVector.prototype.setX(vec_or_arr_or_x)
+## PVector.prototype.setX(vec_or_x)
 
-Sets this vector's X component from an object, an array, a value or another vector by copying its X component.
+Sets this vector's X component from an object, a value or another vector by copying its X component.
 
 ### Examples:
     var vec1 = new PVector( 10, 10 );
     var vec2 = new PVector( 20, 20 );
     vec2.setX( vec1 );
-    // vec2.setX( { x:10, y: 10 } );
-    // vec2.setX( [ 10, 10 ] );
     // vec2.setX( 10 );
 
     console.log( vec2.toString() );
@@ -266,31 +259,31 @@ Sets this vector's X component from an object, an array, a value or another vect
 
 ### Params:
 
-* **Object_or_Array_or_Number** *vec_or_arr_or_x* Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+* **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties, or the value of the X axis
 
 ### Return:
 
 * **PVector** `this`
 
-## PVector.prototype.setY(vec_or_arr_or_x)
+## PVector.prototype.setY(vec_or_y)
 
 Same as setX with Y axis.
 
 ### Params:
 
-* **Object_or_Array_or_Number** *vec_or_arr_or_x* Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the Y axis
+* **Object_or_Number** *vec_or_y* Can be an Object with x, y (and z) properties, or the value of the Y axis
 
 ### Return:
 
 * **PVector** `this`
 
-## PVector.prototype.setZ(vec_or_arr_or_x)
+## PVector.prototype.setZ(vec_or_z)
 
 Same as setX with Z axis.
 
 ### Params:
 
-* **Object_or_Array_or_Number** *vec_or_arr_or_x* Can be an Object with x, y and z properties, an Array of 3 values, or the value of the Z axis
+* **Object_or_Number** *vec_or_z* Can be an Object with x, y and z properties, or the value of the Z axis
 
 ### Return:
 

@@ -15,11 +15,6 @@
  *     console.log( vec2.toString() );
  *     // => "{ x: 42, y: 17, z: 10 }"
  *
- *     // Create a new vector from an array with a length of 2 or 3:
- *     var vec3 = PVector( [ 4, 12 ] );
- *     console.log( vec3.toString() );
- *     // => "{ x: 4, y: 12, z: 0 }"
- *
  *     // Create a new vector from an object:
  *     var vec4 = PVector( { x: 30, y: 34, z: 20 } );
  *     console.log( vec4.toString() );
@@ -30,22 +25,22 @@
  *     console.log( v.toString() );
  *     // => "{ x: 0, y: 0, z: 0 }"
  *
- * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+ * @param {Object_or_Number} vec_or_x Can be an Object with x, y (and z) properties or the value of the X axis
  * @param {Number} y Value of the Y axis
  * @param {Number} z Value of the Z axis
  * @return {PVector}
  * @api public
  */
-function PVector( vec_or_arr_or_x, y, z ) {
+function PVector( vec_or_x, y, z ) {
     if( arguments.length === 1 ){
         return new PVector(
-            vec_or_arr_or_x.x || vec_or_arr_or_x[ 0 ] || 0,
-            vec_or_arr_or_x.y || vec_or_arr_or_x[ 1 ] || 0,
-            vec_or_arr_or_x.z || vec_or_arr_or_x[ 2 ] || 0
+            vec_or_x.x || 0,
+            vec_or_x.y || 0,
+            vec_or_x.z || 0
         );
     }
     if ( ! ( this instanceof PVector ) ) {
-        return new PVector( vec_or_arr_or_x || 0, y || 0, z || 0 );
+        return new PVector( vec_or_x || 0, y || 0, z || 0 );
     }
 
     /**
@@ -59,7 +54,7 @@ function PVector( vec_or_arr_or_x, y, z ) {
      *
      * @api public
      */
-    this.x = vec_or_arr_or_x || 0;
+    this.x = vec_or_x || 0;
 
     /**
      * The Y axis
@@ -272,7 +267,7 @@ PVector.prototype = {
     },
 
     /**
-     * Sets this vector's components from an object, an array, a value or another vector by copying its components
+     * Sets this vector's components from an object, a value or another vector by copying its components
      *
      * ### Examples:
      *     var vec1 = new PVector( 10, 10, 50 );
@@ -283,19 +278,19 @@ PVector.prototype = {
      *     // => "{ x: 10, y: 10, z: 50 }"
      *
      * @name PVector.prototype.set
-     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+     * @param {Object_or_Number} vec_or_x Can be an Object with x, y (and z) properties or the value of the X axis
      * @param {Number} y Value of the y axis
      * @param {Number} z Value of the z axis
      * @return {PVector} `this`
      * @api public
      */
-    set: function( vec_or_arr_or_x, y, z ) {
+    set: function( vec_or_x, y, z ) {
         if ( arguments.length === 1 ) {
-            this.set( vec_or_arr_or_x.x || vec_or_arr_or_x[ 0 ] || 0,
-                vec_or_arr_or_x.y || vec_or_arr_or_x[ 1 ] || 0,
-                vec_or_arr_or_x.z || vec_or_arr_or_x[ 2 ] || 0 );
+            this.set( vec_or_x.x || 0,
+                vec_or_x.y || 0,
+                vec_or_x.z || 0 );
         } else {
-            this.x = vec_or_arr_or_x || 0;
+            this.x = vec_or_x || 0;
             this.y = y || 0;
             this.z = z || 0;
         }
@@ -303,26 +298,25 @@ PVector.prototype = {
     },
 
     /**
-     * Sets this vector's X component from an object, an array, a value or another vector by copying its X component.
+     * Sets this vector's X component from an object, a value or another vector by copying its X component.
      *
      * ### Examples:
      *     var vec1 = new PVector( 10, 10 );
      *     var vec2 = new PVector( 20, 20 );
      *     vec2.setX( vec1 );
-     *     // vec2.setX( { x:10, y: 10 } );
-     *     // vec2.setX( [ 10, 10 ] );
      *     // vec2.setX( 10 );
      *
      *     console.log( vec2.toString() );
      *     // => "{ x: 10, y: 20, z: 0 }"
      *
      * @name PVector.prototype.setX
-     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the X axis
+     * @param {Object_or_Number} vec_or_x Can be an Object with x, y (and z) properties, or the value of the X axis
      * @return {PVector} `this`
      * @api public
      */
-    setX: function( vec_or_arr_or_x ) {
-        this.x = vec_or_arr_or_x.x || vec_or_arr_or_x[ 0 ] || vec_or_arr_or_x;
+    setX: function( vec_or_x ) {
+        if ( typeof vec_or_x === 'number' ) { this.x = vec_or_x; }
+        else this.x = vec_or_x.x;
         return this;
     },
 
@@ -330,12 +324,13 @@ PVector.prototype = {
      * Same as setX with Y axis.
      *
      * @name PVector.prototype.setY
-     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y (and z) properties, an Array of 2 or 3 values, or the value of the Y axis
+     * @param {Object_or_Number} vec_or_y Can be an Object with x, y (and z) properties, or the value of the Y axis
      * @return {PVector} `this`
      * @api public
      */
-    setY: function( vec_or_arr_or_y ) {
-        this.y = vec_or_arr_or_y.y || vec_or_arr_or_y[ 1 ] || vec_or_arr_or_y;
+    setY: function( vec_or_y ) {
+        if ( typeof vec_or_y === 'number' ) { this.y = vec_or_y; }
+        else this.y = vec_or_y.y;
         return this;
     },
 
@@ -343,12 +338,13 @@ PVector.prototype = {
      * Same as setX with Z axis.
      *
      * @name PVector.prototype.setZ
-     * @param {Object_or_Array_or_Number} vec_or_arr_or_x Can be an Object with x, y and z properties, an Array of 3 values, or the value of the Z axis
+     * @param {Object_or_Number} vec_or_z Can be an Object with x, y and z properties, or the value of the Z axis
      * @return {PVector} `this`
      * @api public
      */
-    setZ: function( vec_or_arr_or_z ) {
-        this.z = vec_or_arr_or_z.z || vec_or_arr_or_z[ 2 ] || vec_or_arr_or_z;
+    setZ: function( vec_or_z ) {
+        if ( typeof vec_or_z === 'number' ) { this.z = vec_or_z; }
+        else this.z = vec_or_z.z;
         return this;
     },
 
@@ -989,7 +985,8 @@ PVector.prototype = {
      * @api public
      */
     addX: function( vec_or_scal ){
-        this.x += vec_or_scal.x || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.x += vec_or_scal; }
+        else this.x += vec_or_scal.x;
         return this;
     },
 
@@ -1002,7 +999,8 @@ PVector.prototype = {
      * @api public
      */
     addY: function( vec_or_scal ){
-        this.y += vec_or_scal.y || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.y += vec_or_scal; }
+        else this.y += vec_or_scal.y;
         return this;
     },
 
@@ -1015,7 +1013,8 @@ PVector.prototype = {
      * @api public
      */
     addZ: function( vec_or_scal ){
-        this.z += vec_or_scal.z || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.z += vec_or_scal; }
+        else this.z += vec_or_scal.z;
         return this;
     },
 
@@ -1067,7 +1066,8 @@ PVector.prototype = {
      * @api public
      */
     subX: function( vec_or_scal ){
-        this.x -= vec_or_scal.x || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.x -= vec_or_scal; }
+        else this.x -= vec_or_scal.x;
         return this;
     },
 
@@ -1080,7 +1080,8 @@ PVector.prototype = {
      * @api public
      */
     subY: function( vec_or_scal ){
-        this.y -= vec_or_scal.y || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.y -= vec_or_scal; }
+        else this.y -= vec_or_scal.y;
         return this;
     },
 
@@ -1093,7 +1094,8 @@ PVector.prototype = {
      * @api public
      */
     subZ: function( vec_or_scal ){
-        this.z -= vec_or_scal.z || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.z -= vec_or_scal; }
+        else this.z -= vec_or_scal.z;
         return this;
     },
 
@@ -1145,7 +1147,8 @@ PVector.prototype = {
      * @api public
      */
     multX: function( vec_or_scal ){
-        this.x *= vec_or_scal.x || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.x *= vec_or_scal; }
+        else this.x *= vec_or_scal.x;
         return this;
     },
 
@@ -1158,7 +1161,8 @@ PVector.prototype = {
      * @api public
      */
     multY: function( vec_or_scal ){
-        this.y *= vec_or_scal.y || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.y *= vec_or_scal; }
+        else this.y *= vec_or_scal.y;
         return this;
     },
 
@@ -1171,7 +1175,8 @@ PVector.prototype = {
      * @api public
      */
     multZ: function( vec_or_scal ){
-        this.z *= vec_or_scal.z || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.z *= vec_or_scal; }
+        else this.z *= vec_or_scal.z;
         return this;
     },
 
@@ -1223,7 +1228,8 @@ PVector.prototype = {
      * @api public
      */
     divX: function( vec_or_scal ){
-        this.x /= vec_or_scal.x || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.x /= vec_or_scal; }
+        else this.x /= vec_or_scal.x;
         return this;
     },
 
@@ -1236,9 +1242,9 @@ PVector.prototype = {
      * @api public
      */
     divY: function( vec_or_scal ){
-        this.y /= vec_or_scal.y || vec_or_scal;
-        return this;
-    },
+        if ( typeof vec_or_scal === 'number' ) { this.y /= vec_or_scal; }
+        else this.y /= vec_or_scal.y;
+        return this;    },
 
     /**
      * Same as divX with Z axis.
@@ -1249,7 +1255,8 @@ PVector.prototype = {
      * @api public
      */
     divZ: function( vec_or_scal ){
-        this.z /= vec_or_scal.z || vec_or_scal;
+        if ( typeof vec_or_scal === 'number' ) { this.z /= vec_or_scal; }
+        else this.z /= vec_or_scal.z;
         return this;
     },
 
@@ -1299,7 +1306,8 @@ PVector.prototype = {
      * @api public
      */
     lerpX: function( vec_or_scal, amount ){
-        this.x = PVector.lerpVal( this.x, vec_or_scal.x || vec_or_scal, amount );
+        if ( typeof vec_or_scal === 'number' ) { this.x = PVector.lerpVal( this.x, vec_or_scal, amount ); }
+        else this.x = PVector.lerpVal( this.x, vec_or_scal.x, amount );;
         return this;
     },
 
@@ -1313,7 +1321,8 @@ PVector.prototype = {
      * @api public
      */
     lerpY: function( vec_or_scal, amount ){
-        this.y = PVector.lerpVal( this.y, vec_or_scal.y || vec_or_scal, amount );
+        if ( typeof vec_or_scal === 'number' ) { this.y = PVector.lerpVal( this.y, vec_or_scal, amount ); }
+        else this.y = PVector.lerpVal( this.y, vec_or_scal.y, amount );;
         return this;
     },
 
@@ -1326,8 +1335,9 @@ PVector.prototype = {
      * @return {PVector} `this`
      * @api public
      */
-    lerpZ: function( vec, amount ){
-        this.z = PVector.lerpVal( this.z, vec.z || vec, amount );
+    lerpZ: function( vec_or_scal, amount ){
+        if ( typeof vec_or_scal === 'number' ) { this.z = PVector.lerpVal( this.z, vec_or_scal, amount ); }
+        else this.z = PVector.lerpVal( this.z, vec_or_scal.z, amount );;
         return this;
     },
 
