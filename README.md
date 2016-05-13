@@ -2,6 +2,7 @@ PVectorJS
 =========
 A JavaScript 2D/3D vector class for common vector operations based on Processing.js PVector class and Victor.js 
 
+[![PVectorJS](pvectorjs.png)](http://jsbin.com/voselic/edit?html,js,output)
 
 ## Installation
 
