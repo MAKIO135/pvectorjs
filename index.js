@@ -792,7 +792,7 @@ PVector.prototype = {
      * ### Examples:
      *     var vec = new PVector( 10, 20 );
      *
-     *     vec.rotate( Math.PI / 2 );
+     *     vec.rotateTo( Math.PI / 2 );
      *     console.log( vec.toArray() );
      *     // => " [ -20, 9.9999999, 0 ]"
      *
