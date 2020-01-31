@@ -1,1395 +1,1376 @@
+# PVectorjs
+A JavaScript vector Class for common vector operations based on Processing PVector
 
 
-<!-- Start index.js -->
+<details>
+<summary>
+    The <code>PVector(vec_or_x, y, z)</code> constructor
+</summary>
+Works with or without the `new` keyword.
 
-# PVectorjs - A JavaScript vector class for common vector operations based on Processing.js PVector class and PVector.js
+```javascript
+const vec1 = new PVector(100, 50)
+console.log(vec1.toString()) // "{ x: 100, y: 50, z: 0 }"
 
-## PVector(vec_or_x, y, z)
+// Use constructor without the new keyword:
+const vec2 = PVector(42, 17, 10)
+console.log(vec2.toString()) // "{ x: 42, y: 17, z: 10 }"
 
-Works without the `new` keyword.
+// Create a new vector from an object:
+const vec4 = PVector({ x: 30, y: 34, z: 20 })
+console.log(vec4.toString()) // "{ x: 30, y: 34, z: 20 }"
 
-### Examples:
-    var vec1 = new PVector( 100, 50 );
-    console.log( vec1.toString() );
-    // => "{ x: 100, y: 50, z: 0 }"
+// Create a new 0 PVector:
+const v = PVector()
+console.log(v.toString()) // "{ x: 0, y: 0, z: 0 }"
+```
 
-    // Use constructor without the new keyword:
-    var vec2 = PVector( 42, 17, 10 );
-    console.log( vec2.toString() );
-    // => "{ x: 42, y: 17, z: 10 }"
+#### Params:
+- `vec_or_x`: **Object_or_Number**, can be an Object with x, y (and z) properties or the value of the X axis
+- `y`: **Number**, value of the Y axis
+- `z`: **Number**, value of the Z axis
 
-    // Create a new vector from an object:
-    var vec4 = PVector( { x: 30, y: 34, z: 20 } );
-    console.log( vec4.toString() );
-    // => "{ x: 30, y: 34, z: 20 }"
+#### Returns:
+- a `PVector` Object
+</details>
 
-    // Create a new 0 PVector:
-    var v = PVector();
-    console.log( v.toString() );
-    // => "{ x: 0, y: 0, z: 0 }"
+<details>
+<summary><code>x</code>, <code>y</code> and <code>z</code> properties</summary>
 
-### Params:
+A `PVector` always has `x`, `y` and `z` properties:
+- <code>x</code>: **Number**, the X axis
+- <code>y</code>: **Number**, the Y axis
+- <code>z</code>: **Number**, the Z axis
 
-* **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties or the value of the X axis
-* **Number** *y* Value of the Y axis
-* **Number** *z* Value of the Z axis
-
-### Return:
-
-* **PVector** 
-
-## x
-
-The X axis
-
-### Examples:
-    var vec = new PVector(42, 21, 15);
-
-    vec.x;
-    // => 42
-
-## y
-
-The Y axis
-
-### Examples:
-    var vec = new PVector(42, 21, 15);
-
-    vec.y;
-    // => 21
-
-## z
-
-The Z axis
-
-### Examples:
-    var vec = new PVector(42, 21, 15);
-
-    vec.z;
-    // => 15
+```javascript
+const vec = new PVector(42, 21, 15)
+console.log(vec.x) // 42
+console.log(vec.y) // 21
+console.log(vec.z) // 15
+```
+</details>
 
 ___
-# Static Methods
+## Static Methods
 
-## Instanciation Methods
+### Instanciation Methods
 
-## PVector.random2D()
+<details>
+<summary><code>PVector.random2D()</code></summary>
 
 Returns a new 2D unit vector with a random direction.
 
-### Examples:
-    var vec = PVector.random2D();
+```javascript
+const vec = PVector.random2D()
+console.log(vec.toArray()) // [ -0.75006354, -0.6613658, 0.0 ]
+```
 
-    console.log( vec.toArray() );
-    // => "[ -0.75006354, -0.6613658, 0.0 ]"
+#### Returns:
+- a `PVector` Object
+</details>
 
-### Return:
-
-* **PVector** 
-
-## PVector.random3D()
-
+<details>
+<summary><code>PVector.random3D()</code></summary>
 Returns a new 3D unit vector with a random direction.
 
-### Examples:
-    var vec = PVector.random2D();
+```javascript
+const vec = PVector.random3D()
+console.log(vec.toArray()) // [ 0.6091097, -0.22805278, -0.7595902 ]
+```
 
-    console.log( vec.toArray() );
-    // => "[ 0.6091097, -0.22805278, -0.7595902 ]"
+#### Returns:
+- a `PVector` Object
+</details>
 
-### Return:
-
-* **PVector** 
-
-## PVector.fromAngle(angle)
-
+<details>
+<summary><code>PVector.fromAngle(angle)</code></summary>
 Calculates and returns a new 2D unit vector from the specified angle value (in radians).
 
-### Examples:
-    var vec = PVector.fromAngle( 0.01 );
+```javascript
+const vec = PVector.fromAngle(0.01)
+console.log(vec.toString()) // [ 0.99995, 0.009999833, 0.0 ]
+```
 
-    console.log( vec.toString() );
-    // => "[ 0.99995, 0.009999833, 0.0 ]"
+#### Params:
+- **Number** *angle* The angle in radians
 
-### Params:
-
-* **Number** *angle* The angle in radians
-
-### Return:
-
-* **PVector** 
+#### Returns:
+- **PVector** 
+</details>
 
 ## Utility Methods
-
-## PVector.angleBetween(v1, v2)
+<details>
+<summary><code>PVector.angleBetween(v1, v2)</code></summary>
 
 Calculates and returns the angle (in radians) between two vectors.
 
-### Examples:
-    var v1 = new PVector( 10, 20 );
-    var v2 = new PVector( 60, 80 );
+```javascript
+const v1 = new PVector(10, 20)
+const v2 = new PVector(60, 80)
 
-    var angle = PVector.angleBetween( v1, v2 );
-    console.log( angle );
-    // => "0.1798535"
+const angle = PVector.angleBetween(v1, v2)
+console.log(angle)
+// 0.1798535
+````
 
-### Params:
+#### Params:
+- **PVector** *v1* Any variable of type PVector
+- **PVector** *v2* Any variable of type PVector
 
-* **PVector** *v1* Any variable of type PVector
-* **PVector** *v2* Any variable of type PVector
+#### Returns:
+- **Number** 
+</details>
 
-### Return:
-
-* **Number** 
-
-## PVector.radian2degrees(radians)
+<details>
+<summary><code>PVector.radian2degrees(radians)</code></summary>
 
 Converts a value in radians to a value in degrees.
 
-### Examples:
-    var angleRadians = Math.PI / 2;
-    var angleDegrees = PVector.radians2degrees( angleRadians );
-    console.log( angleDegrees );
-    // => "90"
+```javascript
+const angleRadians = Math.PI / 2
+const angleDegrees = PVector.radians2degrees(angleRadians)
+console.log(angleDegrees) // 90
+```
 
-### Params:
+#### Params:
+- **Number** *radians* An angle in radians
 
-* **Number** *radians* An angle in radians
+#### Returns:
+- **Number** 
+</details>
 
-### Return:
-
-* **Number** 
-
-## PVector.degrees2radians(degrees)
+<details>
+<summary><code>PVector.degrees2radians(degrees)</code></summary>
 
 Converts a value in degrees to a value in radians.
 
-### Examples:
-    var angleDegrees = 90;
-    var angleRadians = PVector.degrees2radian( angleDegrees );
-    console.log( angleRadians );
-    // => "1.5707963267948966"
+```javascript
+const angleDegrees = 90
+const angleRadians = PVector.degrees2radian(angleDegrees)
+console.log(angleRadians) // 1.5707963267948966
+```
 
-### Params:
+#### Params:
+- **Number** *degrees* An angle in degrees
 
-* **Number** *degrees* An angle in degrees
+#### Returns:
+    - **Number** 
+</details>
 
-### Return:
-
-* **Number** 
-
-## PVector.lerpVal(a, b, amount)
+<details>
+<summary><code>PVector.lerpVal(a, b, amount)</code></summary>
 
 Calculates a number between two numbers at a specific increment. The amount parameter is the amount to interpolate between the two values where 0.0 equal to the first point, 0.1 is very near the first point, 0.5 is half-way in between, etc.
 
-### Examples:
-    var foo = PVector.lerpVal( 10, 20, 0.75 );
+```javascript
+const foo = PVector.lerpVal(10, 20, 0.75)
+console.log(foo) // 17.5
+```
 
-    console.log( foo );
-    // => "17.5"
+#### Params:
+- **Number** *a* First value
+- **Number** *b* Second value
+- **Number** *amount* Number between 0.0 and 1.0
 
-### Params:
-
-* **Number** *a* First value
-* **Number** *b* Second value
-* **Number** *amount* Number between 0.0 and 1.0
-
-### Return:
-
-* **Number** 
+#### Returns:
+- **Number** 
+</details>
 
 ___
-# PVector.prototype Methods
+## PVector.prototype Methods
 
-## PVector
+### Manipulation methods
 
-## Manipulation methods
+**These functions are chainable.**
 
-These functions are chainable.
-
-## PVector.prototype.clone()
+<details>
+<summary><code>PVector.prototype.clone()</code></summary>
 
 Creates a clone of this vector.
 
-### Examples:
-    var vec1 = PVector(10, 10);
-    var vec2 = vec1.clone();
+```javascript
+const vec1 = PVector(10, 10)
+const vec2 = vec1.clone()
 
-    vec2.toString();
-    // => "{ x: 10, y: 10 }"
+vec2.toString() // "{ x: 10, y: 10 }"
+```
 
-### Return:
+#### Returns:
+- **PVector** cloneVec A clone of the vector
 
-* **PVector** cloneVec A clone of the vector
-
-## PVector.prototype.set(vec_or_x, y, z)
+<summary><code>PVector.prototype.set(vec_or_x, y, z)</code></summary>
 
 Sets this vector's components from an object, a value or another vector by copying its components
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 50 );
-    var vec2 = new PVector( 20, 20, 20 );
-    vec2.set( vec1 );
+```javascript
+const vec1 = new PVector(10, 10, 50)
+const vec2 = new PVector(20, 20, 20)
+vec2.set(vec1)
 
-    console.log( vec2.toString() );
-    // => "{ x: 10, y: 10, z: 50 }"
+console.log(vec2.toString()) // "{ x: 10, y: 10, z: 50 }"
+```
 
-### Params:
+#### Params:
+- **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties or the value of the X axis
+- **Number** *y* Value of the y axis
+- **Number** *z* Value of the z axis
 
-* **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties or the value of the X axis
-* **Number** *y* Value of the y axis
-* **Number** *z* Value of the z axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.setX(vec_or_x)
+<details>
+<summary><code>PVector.prototype.setX(vec_or_x)</code></summary>
 
 Sets this vector's X component from an object, a value or another vector by copying its X component.
 
-### Examples:
-    var vec1 = new PVector( 10, 10 );
-    var vec2 = new PVector( 20, 20 );
-    vec2.setX( vec1 );
-    // vec2.setX( 10 );
+```javascript
+const vec1 = new PVector(10, 10)
+const vec2 = new PVector(20, 20)
 
-    console.log( vec2.toString() );
-    // => "{ x: 10, y: 20, z: 0 }"
+vec2.setX(vec1) // equals to vec2.setX(10)
 
-### Params:
+console.log(vec2.toString()) // "{ x: 10, y: 20, z: 0 }"
+```
 
-* **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties, or the value of the X axis
+#### Params:
+- **Object_or_Number** *vec_or_x* Can be an Object with x, y (and z) properties, or the value of the X axis
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.setY(vec_or_y)
+<details>
+<summary><code>PVector.prototype.setY(vec_or_y)</code></summary>
 
 Same as setX with Y axis.
 
-### Params:
+#### Params:
+- **Object_or_Number** *vec_or_y* Can be an Object with x, y (and z) properties, or the value of the Y axis
 
-* **Object_or_Number** *vec_or_y* Can be an Object with x, y (and z) properties, or the value of the Y axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.setZ(vec_or_z)
+<details>
+<summary><code>PVector.prototype.setZ(vec_or_z)</code></summary>
 
 Same as setX with Z axis.
 
-### Params:
+#### Params:
+- **Object_or_Number** *vec_or_z* Can be an Object with x, y and z properties, or the value of the Z axis
 
-* **Object_or_Number** *vec_or_z* Can be an Object with x, y and z properties, or the value of the Z axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.invert()
+<details>
+<summary><code>PVector.prototype.invert()</code></summary>
 
 Inverts each axis.
 
-### Examples:
-    var vec = new PVector(100, 50);
+```javascript
+const vec = new PVector(100, 50)
+vec.invert()
+vec.toString() // x:-100, y:-50
+```
 
-    vec.invert();
-    vec.toString();
-    // => x:-100, y:-50
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.invertX()
+<details>
+<summary><code>PVector.prototype.invertX()</code></summary>
 
 Inverts the X axis.
 
-### Examples:
-    var vec = new PVector(100, 50);
+```javascript
+const vec = new PVector(100, 50)
 
-    vec.invertX();
-    vec.toString();
-    // => x:-100, y:50
+vec.invertX()
+vec.toString()
+// x:-100, y:50
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.invertY()
+<details>
+<summary><code>PVector.prototype.invertY()</code></summary>
 
 Same as invertX with y axis.
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.invertZ()
+<details>
+<summary><code>PVector.prototype.invertZ()</code></summary>
 
 Same as invertX with Z axis.
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.norm()
+<details>
+<summary><code>PVector.prototype.norm()</code></summary>
 
 Normalize the vector.
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.setMag()
+<details>
+<summary><code>PVector.prototype.setMag()</code></summary>
 
 Sets this vector's magnitude to the passed value or to the passed vector's magnitude.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
 
-    vec1.setMag( 10 );
-    console.log( vec1.toArray() );
-    // => [ 3.481553119113957, 3.481553119113957, 8.703882797784892 ]
+vec1.setMag(10)
+console.log(vec1.toArray())
+// [ 3.481553119113957, 3.481553119113957, 8.703882797784892 ]
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.minMag(min)
+<details>
+<summary><code>PVector.prototype.minMag(min)</code></summary>
 
 Sets the minimum for this vector's magnitude. If the magnitude is inferior to the passed value, this vector will be scaled to the desired magnitude. A vector can also be passed as parameter, its magnitude will be used for comparison.
 
-### Examples:
-    var vec1 = new PVector( 1, 2, .2 );
+```javascript
+const vec1 = new PVector(1, 2, .2)
 
-    vec1.minMag( 5 );
-    console.log( vec1.toArray() );
-    // => [ 2.2271771, 4.4543543, 0.4454354 ]
+vec1.minMag(5)
+console.log(vec1.toArray()) // [ 2.2271771, 4.4543543, 0.4454354 ]
+```
 
-### Params:
+#### Params:
+- **Vector** *min* 
 
-* **Vector** *min* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.maxMag(max)
+<details>
+<summary><code>PVector.prototype.maxMag(max)</code></summary>
 
 Sets the maximum for this vector's magnitude. If the magnitude is superior to the passed value, this vector will be scaled to the desired magnitude. A vector can also be passed as parameter, its magnitude will be used for comparison.
 
-### Examples:
-    var vec1 = new PVector( 10, 20, 2 );
+```javascript
+const vec1 = new PVector(10, 20, 2)
 
-    vec1.maxMag( 5 );
-    console.log( vec1.toArray() );
-    // => [ 2.2271771, 4.4543543, 0.4454354 ]
+vec1.maxMag(5)
+console.log(vec1.toArray()) // [ 2.2271771, 4.4543543, 0.4454354 ]
+```
 
-### Params:
+#### Params:
+- **Vector** *max* 
 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.maxMag(min, max)
+<details>
+<summary><code>PVector.prototype.clampMag(min, max)</code></summary>
 
 Constrains this vector's magnitude to the passed values. If the magnitude is inferior or superior to the passed values, this vector will be scaled to reach the desired range (lower limit if inferior, upper limit if superior). Vectors can also be passed as parameter, their magnitudes will be used for comparison.
 
-### Examples:
-    var vec1 = new PVector( 1, 1, .2 );
+```javascript
+const vec1 = new PVector(1, 1, .2)
 
-    vec1.clampMag( 5, 10 );
-    console.log( vec1.toArray() );
-    // => [ 2.2271771, 4.4543543, 0.4454354 ]
+vec1.clampMag(5, 10)
+console.log(vec1.toArray()) // [ 2.2271771, 4.4543543, 0.4454354 ]
+```
 
-### Params:
+#### Params:
+- **Vector** *min* 
+- **Vector** *max* 
 
-* **Vector** *min* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.min(min, min)
+<details>
+<summary><code>PVector.prototype.min(min, min)</code></summary>
 
 Sets the minimum for each of this vector's axis to the passed value or to each of the passed vector.
 
-### Examples:
-    var vec1 = new PVector( 15, 10, 25 );
+```javascript
+const vec1 = new PVector(15, 10, 25)
 
-    vec1.min( 12 );
-    console.log( vec1.toArray() );
-    // => [ 15, 12, 25 ]
+vec1.min(12)
+console.log(vec1.toArray()) // [ 15, 12, 25 ]
+```
 
-### Params:
+#### Params:
+- **Number** *min* 
+- **Vector** *min* 
 
-* **Number** *min* 
-* **Vector** *min* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.minX(min, min)
+<details>
+<summary><code>PVector.prototype.minX(min, min)</code></summary>
 
 Sets the minimum for this vector's X axis to the passed value or to the passed vector's X axis.
 
-### Examples:
-    var vec1 = new PVector( 15, 10, 25 );
+```javascript
+const vec1 = new PVector(15, 10, 25)
 
-    vec1.minX( 20 );
-    console.log( vec1.toArray() );
-    // => [ 20, 10, 25 ]
+vec1.minX(20)
+console.log(vec1.toArray()) // [ 20, 10, 25 ]
+```
 
-### Params:
+#### Params:
+- **Number** *min* 
+- **Vector** *min* 
 
-* **Number** *min* 
-* **Vector** *min* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.minY(min, min)
+<details>
+<summary><code>PVector.prototype.minY(min, min)</code></summary>
 
 Same as limitX with Y axis.
 
-### Params:
+#### Params:
+- **Number** *min* 
+- **Vector** *min* 
 
-* **Number** *min* 
-* **Vector** *min* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.minZ(min, min)
+<details>
+<summary><code>PVector.prototype.minZ(min, min)</code></summary>
 
 Same as limitX with Z axis.
 
-### Params:
+#### Params:
+- **Number** *min* 
+- **Vector** *min* 
 
-* **Number** *min* 
-* **Vector** *min* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.max(max, max)
+<details>
+<summary><code>PVector.prototype.max(max, max)</code></summary>
 
 Sets the maximum for each of this vector's axis to the passed value or to each of the passed vector.
 
-### Examples:
-    var vec1 = new PVector( 15, 10, 25 );
+```javascript
+const vec1 = new PVector(15, 10, 25)
 
-    vec1.max( 12 );
-    console.log( vec1.toArray() );
-    // => [ 12, 10, 12 ]
+vec1.max(12)
+console.log(vec1.toArray())// [ 12, 10, 12 ]
+```
 
-### Params:
+#### Params:
+- **Number** *max* 
+- **Vector** *max* 
 
-* **Number** *max* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.maxX(max, max)
+<details>
+<summary><code>PVector.prototype.maxX(max, max)</code></summary>
 
 Sets the maximum for this vector's X axis to the passed value or to the passed vector's X axis.
 
-### Examples:
-    var vec1 = new PVector( 15, 10, 25 );
+```javascript
+const vec1 = new PVector(15, 10, 25)
 
-    vec1.maxX( 12 );
-    console.log( vec1.toArray() );
-    // => [ 12, 10, 25 ]
+vec1.maxX(12)
+console.log(vec1.toArray()) // [ 12, 10, 25 ]
+```
 
-### Params:
+#### Params:
+- **Number** *max* 
+- **Vector** *max* 
 
-* **Number** *max* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.maxY(max, max)
+<details>
+<summary><code>PVector.prototype.maxY(max, max)</code></summary>
 
 Same as limitX with Y axis.
 
-### Params:
+#### Params:
+- **Number** *max* 
+- **Vector** *max* 
 
-* **Number** *max* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.maxZ(max, max)
+<details>
+<summary><code>PVector.prototype.maxZ(max, max)</code></summary>
 
 Same as limitX with Z axis.
 
-### Params:
+#### Params:
+- **Number** *max* 
+- **Vector** *max* 
 
-* **Number** *max* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.clamp(min, max)
+<details>
+<summary><code>PVector.prototype.clamp(min, max)</code></summary>
 
 Constrains each of this vector's axis between the passed min and max.
 Min and max can be scalar or vector, in this case each axis will be constrained between the corresponding axis of the passed vectors.
 
-### Examples:
-    var vec1 = new PVector( 15, 10, 25 );
-    var vmin = new PVector( 5, 12, 11 );
-    var vmax = new PVector( 35, 18, 20 );
+```javascript
+const vec1 = new PVector(15, 10, 25)
+const vmin = new PVector(5, 12, 11)
+const vmax = new PVector(35, 18, 20)
 
-    vec1.clamp( vmin, vmax );
-    console.log( vec1.toArray() );
-    // => [ 15, 12, 20 ]
+vec1.clamp(vmin, vmax)
+console.log(vec1.toArray()) // [ 15, 12, 20 ]
+```
 
-### Params:
+#### Params:
+- **Vector** *min* 
+- **Vector** *max* 
 
-* **Vector** *min* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.clampX(min, max)
+<details>
+<summary><code>PVector.prototype.clampX(min, max)</code></summary>
 
 Constrains this vector's X axis between the passed min and max.
 Min and max can be scalar or vector, in this case X axis will be constrained between the X axis of the passed vectors.
 
-### Examples:
-    var vec1 = new PVector( 15, 10, 25 );
-    var vmin = new PVector( 17, 12, 11 );
-    var vmax = new PVector( 35, 18, 20 );
+```javascript
+const vec1 = new PVector(15, 10, 25)
+const vmin = new PVector(17, 12, 11)
+const vmax = new PVector(35, 18, 20)
 
-    vec1.clampX( vmin, vmax );
-    console.log( vec1.toArray() );
-    // => [ 17, 10, 25 ]
+vec1.clampX(vmin, vmax)
+console.log(vec1.toArray()) // [ 17, 10, 25 ]
+```
 
-### Params:
+#### Params:
+- **Vector** *min* 
+- **Vector** *max* 
 
-* **Vector** *min* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.clampY(min, max)
+<details>
+<summary><code>PVector.prototype.clampY(min, max)</code></summary>
 
 Same as clampX with Y axis.
 
-### Params:
+#### Params:
+- **Vector** *min* 
+- **Vector** *max* 
 
-* **Vector** *min* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.clampZ(min, max)
+<details>
+<summary><code>PVector.prototype.clampZ(min, max)</code></summary>
 
 Same as clampX with Z axis.
 
-### Params:
+#### Params:
+- **Vector** *min* 
+- **Vector** *max* 
 
-* **Vector** *min* 
-* **Vector** *max* 
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.rotateTo()
+<details>
+<summary><code>PVector.prototype.rotateTo()</code></summary>
 
 Rotates a vector to the specified angle in radians (2D vectors only), while maintaining the same magnitude.
 
-### Examples:
-    var vec = new PVector( 10, 20 );
+```javascript
+const vec = new PVector(10, 20)
 
-    vec.rotateTo( Math.PI / 2 );
-    console.log( vec.toArray() );
-    // => " [ -20, 9.9999999, 0 ]"
+vec.rotateTo(Math.PI / 2)
+console.log(vec.toArray()) // [ -20, 9.9999999, 0 ]
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.rotateBy()
+<details>
+<summary><code>PVector.prototype.rotateBy()</code></summary>
 
 Adds the passed angle in radians to the vector's rotation(2D vectors only), while maintaining the same magnitude.
 
-### Examples:
-    var vec = new PVector( 10, 0 );
+```javascript
+const vec = new PVector(10, 0)
 
-    vec.rotateBy( Math.PI / 2 );
-    console.log( vec.toArray() );
-    // => " [ 0, -9.9999999, 0 ]"
+vec.rotateBy(Math.PI / 2)
+console.log(vec.toArray()) // [ 0, -9.9999999, 0 ]
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.round()
+<details>
+<summary><code>PVector.prototype.round()</code></summary>
 
 Rounds each of this vector's axis to an integer value.
 
-### Examples:
-    var vec = new PVector( 100.2254, 50.9786 );
+```javascript
+const vec = new PVector(100.2254, 50.9786)
 
-    vec.round();
-    console.log( vec.toString() );
-    // => "{ x: 100, y: 51, z: 0 }"
+vec.round()
+console.log(vec.toString()) // "{ x: 100, y: 51, z: 0 }"
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.floor()
+<details>
+<summary><code>PVector.prototype.floor()</code></summary>
 
 Floors each of this vector's axis to an integer value.
 
-### Examples:
-    var vec = new PVector( 100.2254, 50.9786 );
+```javascript
+const vec = new PVector(100.2254, 50.9786)
 
-    vec.floor();
-    console.log( vec.toString() );
-    // => "{ x: 100, y: 50, z: 0 }"
+vec.floor()
+console.log(vec.toString()) // "{ x: 100, y: 50, z: 0 }"
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.ceil()
+<details>
+<summary><code>PVector.prototype.ceil()</code></summary>
 
 Ceils each of this vector's axis to an integer value.
 
-### Examples:
-    var vec = new PVector( 100.2254, 50.9786 );
+```javascript
+const vec = new PVector(100.2254, 50.9786)
 
-    vec.ceil();
-    console.log( vec.toString() );
-    // => "{ x: 101, y: 51, z: 0 }"
+vec.ceil()
+console.log(vec.toString()) // "{ x: 101, y: 51, z: 0 }"
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
-
-## PVector.prototype.toFixed(Precision)
+<details>
+<summary><code>PVector.prototype.toFixed(Precision)</code></summary>
 
 Rounds axis to a certain precision.
 
-### Examples:
-    var vec = new PVector( 100.2254, 50.9786 );
+```javascript
+const vec = new PVector(100.2254, 50.9786)
 
-    vec.toFixed( 2 );
-    console.log( vec.toString() );
-    // => "{ x: 100.22, y: 50.97, z: 0 }"
+vec.toFixed(2)
+console.log(vec.toString()) // "{ x: 100.22, y: 50.97, z: 0 }"
+```
 
-### Params:
+#### Params:
+- **Number** *Precision* (default: 8)
 
-* **Number** *Precision* (default: 8)
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.zero()
+<details>
+<summary><code>PVector.prototype.zero()</code></summary>
 
 Sets each of this vector's axis to 0.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
 
-    vec1.zero();
-    console.log( vec1.toArray() );
-    // => [ 0, 0, 0 ]
+vec1.zero()
+console.log(vec1.toArray()) // [ 0, 0, 0 ]
+```
 
-### Return:
+#### Returns:
+- **PVector** `this`
+</details>
 
-* **PVector** `this`
+### Vector operations
 
-## Vector operations
+**These functions are chainable.**
 
-These functions are chainable.
-
-## PVector.prototype.add(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.add(vec_or_scal)</code></summary>
 
 Adds another vector to this one or adds the given scalar to each vector's axis.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
-    var vec2 = new PVector( 20, 30, 10 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
+const vec2 = new PVector(20, 30, 10)
 
-    vec1.add( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: 30, y: 40, z: 35 }"
+vec1.add(vec2)
+console.log(vec1.toString()) // "{ x: 30, y: 40, z: 35 }"
 
-    vec1.add( 5 );
-    console.log( vec1.toString() );
-    // => "{ x: 35, y: 45, z: 40 }"
+vec1.add(5)
+console.log(vec1.toString()) // "{ x: 35, y: 45, z: 40 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to add to this one or the scalar to add
 
-* **PVector** *vec_or_scal* The other vector you want to add to this one or the scalar to add
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.addX(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.addX(vec_or_scal)</code></summary>
 
 Adds another vector's X axis to this one or adds the given scalar to this one's X axis.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
-    var vec2 = new PVector( 20, 30, 10 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
+const vec2 = new PVector(20, 30, 10)
 
-    vec1.addX( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: 30, y: 10, z: 25 }"
+vec1.addX(vec2)
+console.log(vec1.toString()) // "{ x: 30, y: 10, z: 25 }"
 
-    vec1.addX( 5 );
-    console.log( vec1.toString() );
-    // => "{ x: 35, y: 10, z: 25 }"
+vec1.addX(5)
+console.log(vec1.toString()) // "{ x: 35, y: 10, z: 25 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to add or the scalar to add to this one's X axis
 
-* **PVector** *vec_or_scal* The other vector you want to add or the scalar to add to this one's X axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.addY(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.addY(vec_or_scal)</code></summary>
 
 Same as addX with Y axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to add or the scalar to add to this one's Y axis
 
-* **PVector** *vec_or_scal* The other vector you want to add or the scalar to add to this one's Y axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.addZ(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.addZ(vec_or_scal)</code></summary>
 
 Same as addX with Z axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to add or the scalar to add to this one's Z axis
 
-* **PVector** *vec_or_scal* The other vector you want to add or the scalar to add to this one's Z axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.sub(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.sub(vec_or_scal)</code></summary>
 
 Substracts another vector from this one or substracts the given scalar from each vector's axis.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
-    var vec2 = new PVector( 20, 30, 10 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
+const vec2 = new PVector(20, 30, 10)
 
-    vec1.sub( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: -10, y: -20, z: 15 }"
+vec1.sub(vec2)
+console.log(vec1.toString()) // "{ x: -10, y: -20, z: 15 }"
 
-    vec1.sub( 5 );
-    console.log( vec1.toString() );
-    // => "{ x: -15, y: -25, z: 10 }"
+vec1.sub(5)
+console.log(vec1.toString()) // "{ x: -15, y: -25, z: 10 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to substract from this one or the scalar to substract
 
-* **PVector** *vec_or_scal* The other vector you want to substract from this one or the scalar to substract
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.subX(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.subX(vec_or_scal)</code></summary>
 
 Substracts another vector's X axis from this one or substracts the given scalar from this one's X axis.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
-    var vec2 = new PVector( 20, 30, 10 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
+const vec2 = new PVector(20, 30, 10)
 
-    vec1.subX( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: -10, y: 10, z: 25 }"
+vec1.subX(vec2)
+console.log(vec1.toString()) // "{ x: -10, y: 10, z: 25 }"
 
-    vec1.subX( 5 );
-    console.log( vec1.toString() );
-    // => "{ x: -15, y: 10, z: 25 }"
+vec1.subX(5)
+console.log(vec1.toString()) // "{ x: -15, y: 10, z: 25 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to substract or the scalar to substract from this one's X axis
 
-* **PVector** *vec_or_scal* The other vector you want to substract or the scalar to substract from this one's X axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.subY(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.subY(vec_or_scal)</code></summary>
 
 Same as subX with Y axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to substract or the scalar to substract from this one's Y axis
 
-* **PVector** *vec_or_scal* The other vector you want to substract or the scalar to substract from this one's Y axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.subZ(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.subZ(vec_or_scal)</code></summary>
 
 Same as subX with Z axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to substract or the scalar to substract from this one's Z axis
 
-* **PVector** *vec_or_scal* The other vector you want to substract or the scalar to substract from this one's Z axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.mult(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.mult(vec_or_scal)</code></summary>
 
 Multiplies another vector with this one or multiplies the given scalar with each vector's axis.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
-    var vec2 = new PVector( 20, 30, 10 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
+const vec2 = new PVector(20, 30, 10)
 
-    vec1.mult( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: 200, y: 300, z: 250 }"
+vec1.mult(vec2)
+console.log(vec1.toString()) // "{ x: 200, y: 300, z: 250 }"
 
-    vec1.mult( 5 );
-    console.log( vec1.toString() );
-    // => "{ x: 1000, y: 1500, z: 1250 }"
+vec1.mult(5)
+console.log(vec1.toString()) // "{ x: 1000, y: 1500, z: 1250 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to multiply with this one or the scalar to multiply
 
-* **PVector** *vec_or_scal* The other vector you want to multiply with this one or the scalar to multiply
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.multX(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.multX(vec_or_scal)</code></summary>
 
 Multiplies another vector's X axis with this one or multiplies the given scalar with this one's X axis.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
-    var vec2 = new PVector( 20, 30, 10 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
+const vec2 = new PVector(20, 30, 10)
 
-    vec1.subX( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: 200, y: 10, z: 25 }"
+vec1.subX(vec2)
+console.log(vec1.toString()) // "{ x: 200, y: 10, z: 25 }"
 
-    vec1.subX( 5 );
-    console.log( vec1.toString() );
-    // => "{ x: 1000, y: 10, z: 25 }"
+vec1.subX(5)
+console.log(vec1.toString()) // "{ x: 1000, y: 10, z: 25 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to multiply or the scalar to multiply with this one's X axis
 
-* **PVector** *vec_or_scal* The other vector you want to multiply or the scalar to multiply with this one's X axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.multY(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.multY(vec_or_scal)</code></summary>
 
 Same as multX with Y axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to multiply or the scalar to multiply with this one's Y axis
 
-* **PVector** *vec_or_scal* The other vector you want to multiply or the scalar to multiply with this one's Y axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.multZ(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.multZ(vec_or_scal)</code></summary>
 
 Same as multX with Z axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to multiply or the scalar to multiply with this one's Z axis
 
-* **PVector** *vec_or_scal* The other vector you want to multiply or the scalar to multiply with this one's Z axis
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.div(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.div(vec_or_scal)</code></summary>
 
 Divides this vector by another one or divides each vector's axis by the given scalar.
 
-### Examples:
-    var vec1 = new PVector( 20, 30, 10 );
-    var vec2 = new PVector( 10, 10, 5 );
+```javascript
+const vec1 = new PVector(20, 30, 10)
+const vec2 = new PVector(10, 10, 5)
 
-    vec1.div( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: 2, y: 3, z: 2 }"
+vec1.div(vec2)
+console.log(vec1.toString()) // "{ x: 2, y: 3, z: 2 }"
 
-    vec1.div( 2 );
-    console.log( vec1.toString() );
-    // => "{ x: 1, y: 1.5, z: 1 }"
+vec1.div(2)
+console.log(vec1.toString()) // "{ x: 1, y: 1.5, z: 1 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to divide this one by or the scalar to divide by
 
-* **PVector** *vec_or_scal* The other vector you want to divide this one by or the scalar to divide by
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.divX(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.divX(vec_or_scal)</code></summary>
 
 Divides this vector's X axis by another one's or divides this vector's X axis by the given scalar.
 
-### Examples:
-    var vec1 = new PVector( 20, 30, 10 );
-    var vec2 = new PVector( 10, 10, 5 );
+```javascript
+const vec1 = new PVector(20, 30, 10)
+const vec2 = new PVector(10, 10, 5)
 
-    vec1.divX( vec2 );
-    console.log( vec1.toString() );
-    // => "{ x: 2, y: 30, z: 10 }"
+vec1.divX(vec2)
+console.log(vec1.toString()) // "{ x: 2, y: 30, z: 10 }"
 
-    vec1.divX( 2 );
-    console.log( vec1.toString() );
-    // => "{ x: 1, y: 30, z: 10 }"
+vec1.divX(2)
+console.log(vec1.toString()) // "{ x: 1, y: 30, z: 10 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to divide this one's X axis by or the scalar to divide this one's X axis by.
 
-* **PVector** *vec_or_scal* The other vector you want to divide this one's X axis by or the scalar to divide this one's X axis by.
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.divY(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.divY(vec_or_scal)</code></summary>
 
 Same as divX with Y axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to divide this one's Y axis by or the scalar to divide this one's Y axis by.
 
-* **PVector** *vec_or_scal* The other vector you want to divide this one's Y axis by or the scalar to divide this one's Y axis by.
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.divZ(vec_or_scal)
+<details>
+<summary><code>PVector.prototype.divZ(vec_or_scal)</code></summary>
 
 Same as divX with Z axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector you want to divide this one's Z axis by or the scalar to divide this one's Z axis by.
 
-* **PVector** *vec_or_scal* The other vector you want to divide this one's Z axis by or the scalar to divide this one's Z axis by.
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.lerp(vec_or_sacl, amount)
+<details>
+<summary><code>PVector.prototype.lerp(vec_or_sacl, amount)</code></summary>
 
 Performs a linear interpolation towards another vector. A value can be passed instead of a vector.
 
-### Examples:
-    var vec1 = new PVector( 100, 100 );
-    var vec2 = new PVector( 200, 200 );
+```javascript
+const vec1 = new PVector(100, 100)
+const vec2 = new PVector(200, 200)
 
-    vec1.lerp( vec2, 0.5 );
-    console.log( vec.toArray() );
-    // => [ 150, 150, 0 ]
+vec1.lerp(vec2, 0.5)
+console.log(vec2.toArray()) // [ 150, 150, 0 ]
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_sacl* The other vector or value
+- **Number** *amount* The blend amount
 
-* **PVector** *vec_or_sacl* The other vector or value
-* **Number** *amount* The blend amount
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.lerpX(vec_or_scal, amount)
+<details>
+<summary><code>PVector.prototype.lerpX(vec_or_scal, amount)</code></summary>
 
 Performs a linear interpolation of this vector's X  towards another vector's X axis. A value can be passed instead of a vector.
 
-### Examples:
-    var vec1 = new PVector( 100, 100 );
-    var vec2 = new PVector( 200, 200 );
+```javascript
+const vec1 = new PVector(100, 100)
+const vec2 = new PVector(200, 200)
 
-    vec1.lerpX( vec2, 0.7 );
-    console.log( vec1.toArray() );
-    // => [ 170, 100, 0 ]
+vec1.lerpX(vec2, 0.7)
+console.log(vec1.toArray()) // [ 170, 100, 0 ]
 
-    vec1.lerpX( 270, 0.5 );
-    console.log( vec.toArray() );
-    // => [ 220, 100, 0 ]
+vec1.lerpX(270, 0.5)
+console.log(vec1.toArray()) // [ 220, 100, 0 ]
+```
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector or value
+- **Number** *amount* The blend amount
 
-* **PVector** *vec_or_scal* The other vector or value
-* **Number** *amount* The blend amount
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.lerpY(vec_or_scal, amount)
+<details>
+<summary><code>PVector.prototype.lerpY(vec_or_scal, amount)</code></summary>
 
 Same as lerpX with Y axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector or value
+- **Number** *amount* The blend amount
 
-* **PVector** *vec_or_scal* The other vector or value
-* **Number** *amount* The blend amount
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.lerpZ(vec_or_scal, amount)
+<details>
+<summary><code>PVector.prototype.lerpZ(vec_or_scal, amount)</code></summary>
 
 Same as lerpX with Z axis.
 
-### Params:
+#### Params:
+- **PVector** *vec_or_scal* The other vector or value
+- **Number** *amount* The blend amount
 
-* **PVector** *vec_or_scal* The other vector or value
-* **Number** *amount* The blend amount
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.cross(vec)
+<details>
+<summary><code>PVector.prototype.cross(vec)</code></summary>
 
 Calculates and returns a vector composed of the cross product between two vectors, setting itself to the result.
 
-### Examples:
-    var vec = new PVector( 10, 20, 2 );
-    var vec2 = new PVector( 60, 80, 6 );
+```javascript
+const vec = new PVector(10, 20, 2)
+const vec2 = new PVector(60, 80, 6)
 
-    vec.cross( vec2 );
-    console.log( vec.toArray() );
-    // => "[ -40, 360, -24800 ]"
+vec.cross(vec2)
+console.log(vec.toArray()) // [ -40, 360, -24800 ]
+```
 
-### Params:
+#### Params:
+- **PVector** *vec* The vector to calculate the cross product
 
-* **PVector** *vec* The vector to calculate the cross product
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
-
-* **PVector** `this`
-
-## PVector.prototype.projectOnto(vec)
+<details>
+<summary><code>PVector.prototype.projectOnto(vec)</code></summary>
 
 Projects this vector onto another vector, setting itself to the result.
 
-### Examples:
-    var vec = new PVector( 100, 0 );
-    var vec2 = new PVector( 100, 100 );
+```javascript
+const vec = new PVector(100, 0)
+const vec2 = new PVector(100, 100)
 
-    vec.projectOnto( vec2 );
-    console.log( vec.toString() );
-    // => "{ x: 50, y: 50, z: 0 }"
+vec.projectOnto(vec2)
+console.log(vec.toString()) // "{ x: 50, y: 50, z: 0 }"
+```
 
-### Params:
+#### Params:
+- **PVector** *vec* the vector to calculate the cross product
 
-* **PVector** *vec* the vector to calculate the cross product
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Return:
+<details>
+<summary><code>PVector.prototype.applyFunc(vec)</code></summary>
 
-* **PVector** `this`
+Applies a function taking a vector as argument to this vector. Allows extending of the library while keeping chaining
 
-## PVector.prototype.applyFunc(vec)
+```javascript
+function doubleXY(pvec){
+    pvec.x *= 2
+    pvec.y *= 2
+}
 
-Applies a function taking a vector as argument to this vector. Allows extending of the library while keeping chaining;
+const vec = new PVector(100, 40)
+vec.applyFunc(doubleXY)
 
-### Examples:
-    function doubleXY( pvec ){
-        pvec.x *= 2;
-        pvec.y *= 2;
-    }
+console.log(vec.toString()) // "{ x: 200, y: 80, z: 0 }"
+```
 
-    var vec = new PVector( 100, 40 );
-    vec.func( doubleXY );
+#### Params:
+- **Function** *f* The function you want to apply to this vector
 
-    console.log( vec.toString() );
-    // => "{ x: 200, y: 80, z: 0 }"
+#### Returns:
+- **PVector** `this`
+</details>
 
-### Params:
+### Utility methods
 
-* **PVector** *vec* The other vector you want to project this vector onto
+**These functions are not chainable**: they return a value, not a PVector.
 
-### Return:
+<details>
+<summary><code>PVector.prototype.mag()</code></summary>
 
-* **PVector** `this`
+Returns the vector's magnitude or alias of `setMag` if a value is passed as parameter.
 
-## Utility methods
+```javascript
+const vec1 = new PVector(4, 3)
+console.log(vec1.mag()) // 5
 
-These functions are not chainable in the way they return a value, not a PVector.
+vec1.mag(10)
+console.log(vec1.mag()) // 10
+```
+#### Params:
+- **Number_or_undefined** *mag* if a parameter is passed, sets the magnitude of the vector
 
-## PVector.prototype.mag()
+#### Returns:
+- **Number_or_this** magnitude_or_this Return magnitude or this if a value is passed as parameter
+</details>
 
-Returns the vector's magnitude or alias of setMag if a value is passed as parameter.
-
-### Examples:
-    var vec1 = new PVector( 4, 3 );
-
-    console.log( vec1.mag() );
-    // => 5
-    
-    vec1.mag( 10 );
-    console.log( vec1.mag() );
-    // => 10
-
-### Return:
-
-* **Number_or_this** magnitude_or_this Return magnitude or this if a value is passed as parameter
-
-## PVector.prototype.magSq()
+<details>
+<summary><code>PVector.prototype.magSq()</code></summary>
 
 Returns the vector's squared magnitude.
 
-### Examples:
-    var vec1 = new PVector( 10, 10, 25 );
+```javascript
+const vec1 = new PVector(10, 10, 25)
 
-    console.log( vec1.magSq() );
-    // => 825
+console.log(vec1.magSq()) // 825
+```
 
-### Return:
+#### Returns:
+- **Number** magnitude
+</details>
 
-* **Number** magnitude
-
-## PVector.prototype.dist(vector)
+<details>
+<summary><code>PVector.prototype.dist(vector)</code></summary>
 
 Calculates the euclidean distance between this vector and another.
 
-### Examples:
-    var vec1 = new PVector( 100, 50 );
-    var vec2 = new PVector( 200, 60 );
+```javascript
+const vec1 = new PVector(100, 50)
+const vec2 = new PVector(200, 60)
 
-    vec1.dist( vec2 );
-    // => 100.4987562112089
+vec1.dist(vec2) // 100.4987562112089
+```
 
-### Params:
+#### Params:
+- **PVector** *vector* 
 
-* **PVector** *vector* 
+#### Returns:
+- **Number** distance
+</details>
 
-### Return:
-
-* **Number** distance
-
-## PVector.prototype.distX(vector)
+<details>
+<summary><code>PVector.prototype.distX(vector)</code></summary>
 
 Calculates the distance of the X axis between this vector and another.
 
-### Examples:
-    var vec1 = new PVector( 100, 50 );
-    var vec2 = new PVector( 200, 60 );
+```javascript
+const vec1 = new PVector(100, 50)
+const vec2 = new PVector(200, 60)
 
-    vec1.distX( vec2 );
-    // => -100
+vec1.distX(vec2) // -100
+```
 
-### Params:
+#### Params:
+- **PVector** *vector* 
 
-* **PVector** *vector* 
+#### Returns:
+- **Number** distance
+</details>
 
-### Return:
-
-* **Number** distance
-
-## PVector.prototype.distY(vector)
+<details>
+<summary><code>PVector.prototype.distY(vector)</code></summary>
 
 Same as distX with Y axis.
 
-### Params:
+#### Params:
+- **PVector** *vector* 
 
-* **PVector** *vector* 
+#### Returns:
+- **Number** distance
+</details>
 
-### Return:
-
-* **Number** distance
-
-## PVector.prototype.distZ(vector)
+<details>
+<summary><code>PVector.prototype.distZ(vector)</code></summary>
 
 Same as distX with Z axis.
 
-### Params:
+#### Params:
+- **PVector** *vector* 
 
-* **PVector** *vector* 
+#### Returns:
+- **Number** distance
+</details>
 
-### Return:
-
-* **Number** distance
-
-## PVector.prototype.distSq(vector)
+<details>
+<summary><code>PVector.prototype.distSq(vector)</code></summary>
 
 Calculates the squared euclidean distance between this vector and another.
 
-### Examples:
-    var vec1 = new PVector( 100, 50 );
-    var vec2 = new PVector( 200, 60 );
+```javascript
+const vec1 = new PVector(100, 50)
+const vec2 = new PVector(200, 60)
 
-    vec1.distSq( vec2 );
-    // => 10100
+vec1.distSq(vec2) // 10100
+```
 
-### Params:
+#### Params:
+- **PVector** *vector* 
 
-* **PVector** *vector* 
+#### Returns:
+- **Number** distance
+</details>
 
-### Return:
-
-* **Number** distance
-
-## PVector.prototype.angle2D()
+<details>
+<summary><code>PVector.prototype.angle2D()</code></summary>
 
 Calculates the angle of rotation in radians for a vector (2D vectors only).
 
-### Examples:
-    var vec1 = new PVector( 10, 20 );
+```javascript
+const vec1 = new PVector(10, 20)
 
-    console.log( vec1.angle2D() );
-    // => 1.1071488
+console.log(vec1.angle2D()) // 1.1071488
+```
 
-### Return:
+#### Returns:
+- **Number** angle
+</details>
 
-* **Number** angle
-
-## PVector.prototype.dot(vector)
+<details>
+<summary><code>PVector.prototype.dot(vector)</code></summary>
 
 Calculates the dot product of this vector and another.
 
-### Examples:
-    var vec1 = new PVector( 100, 50 );
-    var vec2 = new PVector( 200, 60 );
+```javascript
+const vec1 = new PVector(100, 50)
+const vec2 = new PVector(200, 60)
 
-    console.log( vec1.dot( vec2 ) );
-    // => 23000
+console.log(vec1.dot(vec2)) // 23000
+```
 
-### Params:
+#### Params:
+- **PVector** *vector* 
 
-* **PVector** *vector* 
+#### Returns:
+- **Number** value Dot product
+</details>
 
-### Return:
+### Comparison methods
 
-* **Number** value Dot product
+**These functions are not chainable**: they return a value, not a PVector.
 
-## Comparison methods
+<details>
+<summary><code>PVector.prototype.isZero()</code></summary>
 
-These functions are not chainable in the way they return a value, not a PVector.
+Returns a true if vector is (0, 0, 0).
 
-## PVector.prototype.isZero()
+```javascript
+const vec = new PVector(100, 50, 130)
+vec.zero()
 
-Returns a true if vector is ( 0, 0, 0 ).
+console.log(vec.isZero()) // true
+```
 
-### Examples:
-    var vec = new PVector( 100, 50, 130 );
-    vec.zero();
-    
-    console.log( vec.isZero() );
-    // => true
+#### Returns:
+- **Boolean** 
+</details>
 
-### Return:
-
-* **Boolean** 
-
-## PVector.prototype.isEqual()
+<details>
+<summary><code>PVector.prototype.isEqual()</code></summary>
 
 Returns true if each of this vector' axis are the same as another vector's.
 
-### Examples:
-    var vec1 = new PVector( 100, 50, 70 );
-    var vec2 = new PVector( 100, 50, 70 );
-    var vec3 = new PVector( 100, 10, 70 );
+```javascript
+const vec1 = new PVector(100, 50, 70)
+const vec2 = new PVector(100, 50, 70)
+const vec3 = new PVector(100, 10, 70)
 
-    console.log( vec1.isEqualTo( vec2 ) );
-    // => true
+console.log(vec1.isEqualTo(vec2)) // true
+console.log(vec1.isEqualTo(vec3)) // false
+```
 
-    console.log( vec1.isEqualTo( vec3 ) );
-    // => false
+#### Returns:
+- **Boolean** 
+</details>
 
-### Return:
+### Conversion methods
 
-* **Boolean** 
+**These functions are not chainable**: they return a value, not a PVector.
 
-## Conversion methods
-
-These functions are not chainable in the way they return a value, not a PVector.
-
-## PVector.prototype.toString()
+<details>
+<summary><code>PVector.prototype.toString()</code></summary>
 
 Returns a String representation of this vector's x, y and z axis.
 
-### Examples:
-    var vec1 = new PVector( 100, 50, 70 );
+```javascript
+const vec1 = new PVector(100, 50, 70)
 
-    console.log( vec1.toString() );
-    // => "{ x: 100, y: 50, z: 70 }"
+console.log(vec1.toString()) // "{ x: 100, y: 50, z: 70 }"
+```
 
-### Return:
+#### Returns:
+- **String** 
+</details>
 
-* **String** 
-
-## PVector.prototype.toObject()
+<details>
+<summary><code>PVector.prototype.toObject()</code></summary>
 
 Returns an Object representation of this vector's x, y and z axis.
 
-### Examples:
-    var vec1 = new PVector( 100, 50, 70 );
+```javascript
+const vec1 = new PVector(100, 50, 70)
+console.log(vec1.toObject()) // { x: 100, y: 50, z: 70 }
+```
 
-    console.log( vec1.toObject() );
-    // => { x: 100, y: 50, z: 70 }
+#### Returns:
+- **Object** 
+</details>
 
-### Return:
-
-* **Object** 
-
-## PVector.prototype.toArray()
+<details>
+<summary><code>PVector.prototype.toArray()</code></summary>
 
 Returns an Array representation of this vector's x, y and z axis.
 
-### Examples:
-    var vec1 = new PVector( 100, 50, 70 );
+```javascript
+const vec1 = new PVector(100, 50, 70)
 
-    console.log( vec1.toArray() );
-    // => [ 100, 50, 70 ]
+console.log(vec1.toArray()) // [ 100, 50, 70 ]
+```
 
-### Return:
-
-* **Array** 
-
-<!-- End index.js -->
-
+#### Returns:
+- **Array** 
+</details>
