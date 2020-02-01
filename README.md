@@ -13,8 +13,8 @@ npm install pvectorjs --save
 ```
 
 ```javascript
-var PVector = require( 'pvectorjs' );
-var vec = new PVector( 42, 1337 );
+const PVector = require('pvectorjs')
+const vec = new PVector(42, 1337)
 ```
 
 ### Bower
@@ -30,7 +30,7 @@ Include the pre-built script.
 ```html
 <script src="./build/pvector.js"></script>
 <script>
-var vec = new PVector( 42, 1337 );
+const vec = new PVector( 42, 1337 );
 </script>
 ```
 
