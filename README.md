@@ -30,7 +30,7 @@ Include the pre-built script.
 ```html
 <script src="./build/pvector.js"></script>
 <script>
-const vec = new PVector( 42, 1337 );
+const vec = new PVector(42, 1337)
 </script>
 ```
 
