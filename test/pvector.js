@@ -77,69 +77,110 @@ describe('Static methods', () => {
             })
         })
 
-        describe('#PVector.random2D', () => {
-            let vec
+        describe('#PVector.fromAngle', () => {
+            let angle, v
 
             before(() => {
-                vec = PVector.random2D()
+                angle = Math.random() * 2 * Math.PI
+                v = PVector.fromAngle(angle)
             })
 
             it('should return an instance of PVector', () => {
-                expect(vec).to.be.an.instanceof(PVector)
+                expect(v).to.be.an.instanceof(PVector)
+            })
+
+            it('should have x and y axis from angle', () => {
+                expect(Math.abs(v.x - Math.cos(angle))).to.lte(EPSILON)
+                expect(Math.abs(v.y - Math.sin(angle))).to.lte(EPSILON)
+                expect(v).to.have.property('z', 0)
+            })
+        })
+
+        describe('#PVector.random2D', () => {
+            let v
+
+            before(() => {
+                v = PVector.random2D()
+            })
+
+            it('should return an instance of PVector', () => {
+                expect(v).to.be.an.instanceof(PVector)
             })
 
             it('should have random x and y axis', () => {
-                expect(vec).to.have.property('x').to.lte(1)
-                expect(vec).to.have.property('y').to.lte(1)
-                expect(vec).to.have.property('z').to.equal(0)
+                expect(v).to.have.property('x').to.lt(1)
+                expect(v).to.have.property('y').to.lt(1)
+                expect(v).to.have.property('z').to.equal(0)
             })
 
             it('should have a magnitude of ~1', () => {
-                expect(Math.abs(1 - Math.sqrt(vec.x * vec.x + vec.y * vec.y))).to.lte(EPSILON)
+                expect(Math.abs(1 - Math.sqrt(v.x * v.x + v.y * v.y))).to.lte(EPSILON)
             })
         })
 
         describe('#PVector.random3D', () => {
-            let vec
+            let v
 
             before(() => {
-                vec = PVector.random3D()
+                v = PVector.random3D()
             })
 
             it('should return an instance of PVector', () => {
-                expect(vec).to.be.an.instanceof(PVector)
+                expect(v).to.be.an.instanceof(PVector)
             })
 
             it('should have random x, y and z axis', () => {
-                expect(vec).to.have.property('x').to.lte(1)
-                expect(vec).to.have.property('y').to.lte(1)
-                expect(vec).to.have.property('z').to.lte(1)
+                expect(v).to.have.property('x').to.lt(1)
+                expect(v).to.have.property('y').to.lt(1)
+                expect(v).to.have.property('z').to.lt(1)
             })
 
             it('should have a magnitude of ~1', () => {
-                expect(Math.abs(1 - Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z))).to.lte(EPSILON)
+                expect(Math.abs(1 - Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z))).to.lte(EPSILON)
             })
         })
 
-        describe('#PVector.fromAngle', () => {
-            let angle, vec
+        describe('#PVector.random', () => {
+            let v, v2, v3
+            let a, b
 
             before(() => {
-                angle = Math.random() * 2 * Math.PI
-                vec = PVector.fromAngle(angle)
+                a = PVector(2, -5, 5)
+                b = PVector(7, 4, -5)
+                v = PVector.random()
+                v2 = PVector.random(a)
+                v3 = PVector.random(a, b)
             })
 
             it('should return an instance of PVector', () => {
-                expect(vec).to.be.an.instanceof(PVector)
+                expect(v).to.be.an.instanceof(PVector)
+                expect(v2).to.be.an.instanceof(PVector)
+                expect(v3).to.be.an.instanceof(PVector)
             })
 
-            it('should have x and y axis from angle', () => {
-                expect(Math.abs(vec.x - Math.cos(angle))).to.lte(EPSILON)
-                expect(Math.abs(vec.y - Math.sin(angle))).to.lte(EPSILON)
-                expect(vec).to.have.property('z', 0)
+            it('should have random x, y and z axis', () => {
+                expect(v).to.have.property('x').to.gte(0)
+                expect(v).to.have.property('x').to.lt(1)
+                expect(v).to.have.property('y').to.gte(0)
+                expect(v).to.have.property('y').to.lt(1)
+                expect(v).to.have.property('z').to.gte(0)
+                expect(v).to.have.property('z').to.lt(1)
+
+                expect(v2).to.have.property('x').to.gte(0)
+                expect(v2).to.have.property('x').to.lt(a.x)
+                expect(v2).to.have.property('y').to.lte(0)
+                expect(v2).to.have.property('y').to.gt(a.y)
+                expect(v2).to.have.property('z').to.gte(0)
+                expect(v2).to.have.property('z').to.lte(a.z)
+
+                expect(v3).to.have.property('x').to.gte(a.x)
+                expect(v3).to.have.property('x').to.lt(b.x)
+                expect(v3).to.have.property('y').to.gte(a.y)
+                expect(v3).to.have.property('y').to.lt(b.y)
+                expect(v3).to.have.property('z').to.lte(a.z)
+                expect(v3).to.have.property('z').to.gt(b.z)
             })
         })
-
     })
 
     describe('Utility methods', () => {
@@ -1339,10 +1380,10 @@ describe('Prototype methods', () => {
             let v1
 
             before(() => {
-                function double(vec){
-                    vec.x *= 2
-                    vec.y *= 2
-                    vec.z *= 2
+                function double(v){
+                    v.x *= 2
+                    v.y *= 2
+                    v.z *= 2
                 }
 
                 v1 = PVector(4, 5, 3).func(double)
@@ -1548,15 +1589,15 @@ describe('Prototype methods', () => {
     
     describe('Comparison methods', () => {
         describe('#isZero()', function () {
-            let vec, v2
+            let v, v2
 
             before(function () {
-                vec = PVector(0.00001, 0.00001, 0.00001)
+                v = PVector(0.00001, 0.00001, 0.00001)
                 v2 = PVector(0.0001, 0.0001, 0.0001)
             })
 
             it('should return true if the vector is zero', function () {
-                expect(vec.isZero()).to.equal(true)
+                expect(v.isZero()).to.equal(true)
                 expect(v2.isZero()).to.equal(false)
             })
         })
@@ -1582,11 +1623,11 @@ describe('Prototype methods', () => {
 
     describe('Conversion methods', () => { 
         describe('#toString()', () => {
-            let vec, ret
+            let v, ret
 
             before(() => {
-                vec = PVector(100, 200)
-                ret = vec.toString()
+                v = PVector(100, 200)
+                ret = v.toString()
             })
 
             it('should return a string representation of the vector', function () {
@@ -1596,11 +1637,11 @@ describe('Prototype methods', () => {
         })
 
         describe('#toObject()', function () {
-            let vec, ret
+            let v, ret
 
             before(() => {
-                vec = PVector(100, 200)
-                ret = vec.toObject()
+                v = PVector(100, 200)
+                ret = v.toObject()
             })
 
             it('should return an object representation of the vector', () => {
@@ -1610,11 +1651,11 @@ describe('Prototype methods', () => {
         })
 
         describe('#toArray()', function () {
-            let vec, ret
+            let v, ret
 
             before(() => {
-                vec = PVector(100, 200)
-                ret = vec.toArray()
+                v = PVector(100, 200)
+                ret = v.toArray()
             })
 
             it('should return an array representation of the vector', () => {

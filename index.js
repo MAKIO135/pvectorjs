@@ -24,8 +24,13 @@ PVector.random3D = () => {
     const mult = Math.sqrt(1 - vz * vz)
     const vx = mult * Math.cos(angle)
     const vy = mult * Math.sin(angle)
-
     return new PVector(vx, vy, vz)
+}
+PVector.random = (vmax_or_vmin, vmax) => {
+    const v = PVector(Math.random(), Math.random(), Math.random())
+    if (!(vmax_or_vmin instanceof PVector)) return v
+    if (!(vmax instanceof PVector)) return v.mult(vmax_or_vmin)
+    return v.mult(vmax.clone().sub(vmax_or_vmin)).add(vmax_or_vmin)
 }
 
 // Static Utility Methods

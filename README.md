@@ -98,6 +98,22 @@ console.log(v.z) // 15
 ### Instanciation Methods
 
 <details>
+<summary><code>PVector.fromAngle(angle)</code></summary>
+Calculates and returns a new 2D unit vector from the specified angle value (in radians).
+
+```javascript
+const v = PVector.fromAngle(0.01)
+console.log(v.toString()) // [ 0.99995, 0.009999833, 0.0 ]
+```
+
+#### Params:
+- **Number** *angle* The angle in radians
+
+#### Returns:
+- **PVector** 
+</details>
+
+<details>
 <summary><code>PVector.random2D()</code></summary>
 
 Returns a new 2D unit vector with a random direction.
@@ -105,6 +121,23 @@ Returns a new 2D unit vector with a random direction.
 ```javascript
 const v = PVector.random2D()
 console.log(v.toArray()) // [ -0.75006354, -0.6613658, 0.0 ]
+```
+
+#### Returns:
+- a `PVector` Object
+</details>
+
+<details>
+<summary><code>PVector.random3D()</code></summary>
+Returns a new random vector.
+
+```javascript
+const v = PVector.random()
+console.log(v.toArray()) // [ 0.6091097, 0.87642333, 0.3287632 ]
+const v2 = PVector.random(PVector(10, 5, 5)) // can take a max vector
+console.log(v2.toArray()) // [ 7.3987323, 1.3217863, 4.3428713 ]
+const v3 = PVector.random(PVector(-10, -10), PVector(10, 10)) // can take min and max vectors
+console.log(v3.toArray()) // [ 5.3278653, -6.2387621, 0 ]
 ```
 
 #### Returns:
@@ -122,22 +155,6 @@ console.log(v.toArray()) // [ 0.6091097, -0.22805278, -0.7595902 ]
 
 #### Returns:
 - a `PVector` Object
-</details>
-
-<details>
-<summary><code>PVector.fromAngle(angle)</code></summary>
-Calculates and returns a new 2D unit vector from the specified angle value (in radians).
-
-```javascript
-const v = PVector.fromAngle(0.01)
-console.log(v.toString()) // [ 0.99995, 0.009999833, 0.0 ]
-```
-
-#### Params:
-- **Number** *angle* The angle in radians
-
-#### Returns:
-- **PVector** 
 </details>
 
 ### Utility Methods

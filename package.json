@@ -1,6 +1,6 @@
 {
   "name": "pvectorjs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A JavaScript 2D/3D vector class with chainable methods for common vector operations based on Processing PVector class",
   "keywords": [
     "vector",
@@ -16,7 +16,7 @@
     "url": "git://github.com/makio135/pvectorjs.git"
   },
   "scripts": {
-    "build": "(echo '/*' ; cat ./LICENSE ; echo '*/' ; browserify index.js --standalone PVector) > build/pvector.js",
+    "build": "(browserify index.js --standalone PVector) > build/pvector.js",
     "test": "mocha --ui bdd --reporter spec",
     "watch-test": "onchange 'test/pvector.js' -- npm run test",
     "make": "npm run build && npm run test",

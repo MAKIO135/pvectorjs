@@ -1,14 +1,3 @@
-/*
-MIT License
-
-Copyright (c) 2016 Lionel Radisson
- 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.PVector = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 function PVector(vec_or_x, y, z) {
     if (arguments.length === 1) {
@@ -28,35 +17,28 @@ function PVector(vec_or_x, y, z) {
     this.z = z || 0
 }
 // Static Instanciation Methods
-PVector.fromAngle = function(angle) {
-    return new PVector(Math.cos(angle), Math.sin(angle))
-}
-PVector.random2D = function() {
-    return PVector.fromAngle(Math.random() * Math.PI * 2)
-}
-PVector.random3D = function() { 
+PVector.fromAngle = (angle) =>  new PVector(Math.cos(angle), Math.sin(angle))
+PVector.random2D = () => PVector.fromAngle(Math.random() * Math.PI * 2)
+PVector.random3D = () => {
     const angle = Math.random() * Math.PI * 2
     const vz = Math.random() * 2 - 1
     const mult = Math.sqrt(1 - vz * vz)
     const vx = mult * Math.cos(angle)
     const vy = mult * Math.sin(angle)
-
     return new PVector(vx, vy, vz)
+}
+PVector.random = (vmax_or_vmin, vmax) => {
+    const v = PVector(Math.random(), Math.random(), Math.random())
+    if (!(vmax_or_vmin instanceof PVector)) return v
+    if (!(vmax instanceof PVector)) return v.mult(vmax_or_vmin)
+    return v.mult(vmax.clone().sub(vmax_or_vmin)).add(vmax_or_vmin)
 }
 
 // Static Utility Methods
-PVector.angleBetween = function(v1, v2) {
-    return Math.acos(v1.dot(v2) / Math.sqrt(v1.magSq() * v2.magSq()))
-}
-PVector.radians2degrees = function(radians) {
-    return radians * (180 / Math.PI)
-}
-PVector.degrees2radians = function(degrees) {
-    return degrees / (180 / Math.PI)
-}
-PVector.lerpVal = function(a, b, amount) {
-    return a + (b - a) * amount
-}
+PVector.angleBetween = (v1, v2) =>  Math.acos(v1.dot(v2) / Math.sqrt(v1.magSq() * v2.magSq()))
+PVector.radians2degrees = (radians) => radians * (180 / Math.PI)
+PVector.degrees2radians = (degrees) => degrees / (180 / Math.PI)
+PVector.lerpVal = (a, b, amount) => a + (b - a) * amount
 
 PVector.prototype = {
     // Manipulation methods
