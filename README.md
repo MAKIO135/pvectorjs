@@ -129,6 +129,19 @@ console.log(v.toArray()) // [ -0.75006354, -0.6613658, 0.0 ]
 
 <details>
 <summary><code>PVector.random3D()</code></summary>
+Returns a new 3D unit vector with a random direction.
+
+```javascript
+const v = PVector.random3D()
+console.log(v.toArray()) // [ 0.6091097, -0.22805278, -0.7595902 ]
+```
+
+#### Returns:
+- a `PVector` Object
+</details>
+
+<details>
+<summary><code>PVector.random()</code></summary>
 Returns a new random vector.
 
 ```javascript
@@ -140,18 +153,9 @@ const v3 = PVector.random(PVector(-10, -10), PVector(10, 10)) // can take min an
 console.log(v3.toArray()) // [ 5.3278653, -6.2387621, 0 ]
 ```
 
-#### Returns:
-- a `PVector` Object
-</details>
-
-<details>
-<summary><code>PVector.random3D()</code></summary>
-Returns a new 3D unit vector with a random direction.
-
-```javascript
-const v = PVector.random3D()
-console.log(v.toArray()) // [ 0.6091097, -0.22805278, -0.7595902 ]
-```
+#### Params:
+- **vmax_or_vmin** *PVector* used as max if 1 argument, as min if 2 (Optional)
+- **vmax** *PVector* used as max (Optional)
 
 #### Returns:
 - a `PVector` Object
