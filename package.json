@@ -1,14 +1,14 @@
 {
   "name": "pvectorjs",
-  "version": "1.2.0",
-  "description": "A JavaScript 2D/3D vector class for common vector operations based on Processing.js PVector class and Victor.js",
+  "version": "2.0.0",
+  "description": "A JavaScript 2D/3D vector class with chainable methods for common vector operations based on Processing PVector class",
   "keywords": [
     "vector",
     "2d",
     "3d"
   ],
   "homepage": "http://github.com/makio135/pvectorjs",
-  "author": "Lionel Radisson <lionel@makio135.com> (http://makio135.com/)",
+  "author": "Lionel Radisson @makio135 (http://makio135.com/)",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "repository": {
@@ -17,19 +17,15 @@
   },
   "scripts": {
     "build": "(echo '/*' ; cat ./LICENSE ; echo '*/' ; browserify index.js --standalone PVector) > build/pvector.js",
-    "min": "cat build/pvector.js | uglifyjs -mc --comments '/^!/' > build/pvector.min.js",
-    "doc": "markdox index.js -o documentation/doc.md",
     "test": "mocha --ui bdd --reporter spec",
     "watch-test": "onchange 'test/pvector.js' -- npm run test",
-    "make": "npm run build && npm run test && npm run doc && npm run min",
+    "make": "npm run build && npm run test",
     "watch": "onchange 'index.js' -- npm run make"
   },
   "devDependencies": {
-    "browserify": "^3.46.1",
-    "chai": "^1.9.2",
-    "markdox": "^0.1.10",
-    "uglify-js": "^2.6.2",
-    "onchange": "^2.4.0"
+    "browserify": "^16.5.0",
+    "chai": "^4.2.0",
+    "onchange": "^6.1.0"
   },
   "bugs": {
     "url": "https://github.com/makio135/pvectorjs/issues"
