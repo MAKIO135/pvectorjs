@@ -16,7 +16,9 @@ function PVector(vec_or_x, y, z) {
     this.z = z || 0
 }
 // Static Instanciation Methods
-PVector.fromAngle = (angle) =>  new PVector(Math.cos(angle), Math.sin(angle))
+PVector.fromObject = (object) => new PVector(object)
+PVector.fromArray = (arr) => new PVector(...arr)
+PVector.fromAngle = (angle) => new PVector(Math.cos(angle), Math.sin(angle))
 PVector.random2D = () => PVector.fromAngle(Math.random() * Math.PI * 2)
 PVector.random3D = () => {
     const angle = Math.random() * Math.PI * 2
