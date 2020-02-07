@@ -1336,7 +1336,7 @@ console.log(v.isZero()) // true
 </details>
 
 <details>
-<summary><code>PVector.prototype.isEqual()</code></summary>
+<summary><code>PVector.prototype.isEqualTo()</code></summary>
 
 Returns true if each of this vector' axis are the same as another vector's.
 

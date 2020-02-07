@@ -400,8 +400,10 @@ PVector.prototype = {
     isZero: function() {
         return this.magSq() < 1e-8
     },
-    isEqual: function(vec) {
-        return this.x === vec.x && this.y === vec.y && this.z === vec.z
+    isEqualTo: function(vec, tolerance = 0) {
+        return Math.abs(this.x - vec.x) <= tolerance
+            && Math.abs(this.y - vec.y) <= tolerance 
+            && Math.abs(this.z - vec.z) <= tolerance
     },
 
     // Conversion methods
