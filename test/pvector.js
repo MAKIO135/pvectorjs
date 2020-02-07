@@ -1602,7 +1602,7 @@ describe('Prototype methods', () => {
             })
         })
 
-        describe('#isEqual()', function () {
+        describe('#isEqualTo()', function () {
             let v1, v2, vec3
 
             before(function () {
@@ -1612,10 +1612,10 @@ describe('Prototype methods', () => {
             })
 
             it('should return false if the vectors are not the same', function () {
-                expect(v1.isEqual(v2)).to.equal(false)
+                expect(v1.isEqualTo(v2)).to.equal(false)
             })
             it('should return true if the vectors are the same', function () {
-                expect(v2.isEqual(vec3)).to.equal(true)
+                expect(v2.isEqualTo(vec3)).to.equal(true)
             })
         })
 
