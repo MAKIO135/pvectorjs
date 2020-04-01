@@ -1528,7 +1528,7 @@ describe('Prototype methods', () => {
             })
 
             it('should return the squared distance between this vector and another', () => {
-                expect(dist).to.eql(10100)
+                expect(dist).to.eql(10200)
             })
         })
 
