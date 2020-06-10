@@ -25,6 +25,7 @@
   "devDependencies": {
     "browserify": "^16.5.0",
     "chai": "^4.2.0",
+    "mocha": "^7.1.1",
     "onchange": "^6.1.0"
   },
   "bugs": {
