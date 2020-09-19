@@ -381,7 +381,7 @@ PVector.prototype = {
         return vec.z - this.z
     },
     distSq: function(vec) {
-        return this.distX(vec) ** 2 + this.distY(vec) ** 2
+        return this.distX(vec) ** 2 + this.distY(vec) ** 2 + this.distZ(vec) ** 2
     },
     manhattanDist: function(vec) {
         return this.distX(vec) + this.distY(vec) + this.distZ(vec)
