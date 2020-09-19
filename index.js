@@ -432,4 +432,11 @@ for (let method in PVector.prototype) {
     }
 }
 
-exports = module.exports = PVector
+// amd
+if (typeof define !== 'undefined' && define.amd) define(function() { return PVector; });
+// common js
+if (typeof exports !== 'undefined') exports.PVector = PVector;
+// browser
+else if (typeof window !== 'undefined') window.PVector = PVector;
+// nodejs
+if (typeof module !== 'undefined') module.exports = PVector;
