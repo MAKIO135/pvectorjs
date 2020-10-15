@@ -20,7 +20,7 @@
     "minify": "minify build/pvector.js > build/pvector.min.js",
     "test": "mocha --ui bdd --reporter spec",
     "watch-test": "onchange 'test/pvector.js' -- npm run test",
-    "make": "npm run build && npm run test",
+    "make": "npm run build && npm run minify && npm run test",
     "watch": "onchange 'index.js' -- npm run make"
   },
   "devDependencies": {
