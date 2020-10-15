@@ -1,6 +1,6 @@
 {
   "name": "pvectorjs",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A JavaScript 2D/3D vector class with chainable methods for common vector operations based on Processing PVector class",
   "keywords": [
     "vector",
@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "(browserify index.js --standalone PVector) > build/pvector.js",
+    "minify": "minify build/pvector.js > build/pvector.min.js",
     "test": "mocha --ui bdd --reporter spec",
     "watch-test": "onchange 'test/pvector.js' -- npm run test",
     "make": "npm run build && npm run test",
