@@ -433,10 +433,10 @@ for (let method in PVector.prototype) {
 }
 
 // amd
-if (typeof define !== 'undefined' && define.amd) define(function() { return PVector; });
+if (typeof define !== 'undefined' && define.amd) define(function() { return PVector })
 // common js
-if (typeof exports !== 'undefined') exports.PVector = PVector;
+if (typeof exports !== 'undefined') exports.PVector = PVector
 // browser
-else if (typeof window !== 'undefined') window.PVector = PVector;
+else if (typeof window !== 'undefined') window.PVector = PVector
 // nodejs
-if (typeof module !== 'undefined') module.exports = PVector;
+if (typeof module !== 'undefined') module.exports = PVector
