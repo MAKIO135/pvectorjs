@@ -46,6 +46,10 @@ PVector.prototype = {
     clone: function() {
         return new PVector(this.x, this.y, this.z)
     },
+    copy: function() {
+        // alias for clone method
+        return this.clone()
+    },
     set: function(vec_or_x, y, z) {
         if (arguments.length === 1) {
             this.set(vec_or_x.x || 0,

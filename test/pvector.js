@@ -275,6 +275,25 @@ describe('Prototype methods', () => {
             })
         })
 
+        describe('#copy()', () => {
+            let v1, v2
+
+            before(function () {
+                v1 = PVector(42, 21)
+                v2 = v1.copy()
+            })
+
+            it('should return a clone of a vector', function () {
+                expect(v2).to.be.an.instanceof(PVector)
+                expect(v2).to.not.equal(v1)
+            })
+
+            it('should have the same values as the original', function () {
+                expect(v1.x).to.equal(v2.x)
+                expect(v1.y).to.equal(v2.y)
+            })
+        })
+
         describe('#set()', () => {
             let v1, v3, x, y, z
 
