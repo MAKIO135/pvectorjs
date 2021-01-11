@@ -257,7 +257,24 @@ v2.toString() // "{ x: 10, y: 10 }"
 
 #### Returns:
 - **PVector** cloneVec A clone of the vector
+</details>
 
+<details>
+<summary><code>PVector.prototype.copy()</code></summary>
+
+Alias for `clone` method. Creates a clone of this vector.
+
+```javascript
+const v1 = PVector(10, 10)
+const v2 = v1.copy()
+v2.toString() // "{ x: 10, y: 10 }"
+```
+
+#### Returns:
+- **PVector** cloneVec A clone of the vector
+</details>
+
+<details>
 <summary><code>PVector.prototype.set(vec_or_x, y, z)</code></summary>
 
 Sets this vector's components from an object, a value or another vector by copying its components
