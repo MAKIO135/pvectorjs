@@ -1,6 +1,6 @@
 {
   "name": "pvectorjs",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "A JavaScript 2D/3D vector class with chainable methods for common vector operations based on Processing PVector class",
   "keywords": [
     "vector",

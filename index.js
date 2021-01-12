@@ -205,8 +205,25 @@ PVector.prototype = {
         return this
     },
     rotateBy: function(angle) {
-        angle += this.angle2D()
-        return this.rotateTo(angle)
+        return this.rotateTo(this.angle2D() + angle)
+    },
+    rotateX: function(angle) {
+        const v = PVector(this.z, this.y)
+        v.rotateBy(angle)
+        this.set(this.x, v.y, v.x)
+        return this
+    },
+    rotateY: function(angle) {
+        const v = PVector(this.x, this.z)
+        v.rotateBy(angle)
+        this.set(v.x, this.y, v.y)
+        return this
+    },
+    rotateZ: function(angle) {
+        const v = PVector(this.x, this.y)
+        v.rotateBy(angle)
+        this.set(v.x, v.y, this.z)
+        return this
     },
     round: function() {
         this.x = Math.round(this.x)
