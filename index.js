@@ -46,6 +46,10 @@ PVector.prototype = {
     clone: function() {
         return new PVector(this.x, this.y, this.z)
     },
+    copy: function() {
+        // alias for clone method
+        return this.clone()
+    },
     set: function(vec_or_x, y, z) {
         if (arguments.length === 1) {
             this.set(vec_or_x.x || 0,
@@ -201,8 +205,25 @@ PVector.prototype = {
         return this
     },
     rotateBy: function(angle) {
-        angle += this.angle2D()
-        return this.rotateTo(angle)
+        return this.rotateTo(this.angle2D() + angle)
+    },
+    rotateX: function(angle) {
+        const v = PVector(this.z, this.y)
+        v.rotateBy(angle)
+        this.set(this.x, v.y, v.x)
+        return this
+    },
+    rotateY: function(angle) {
+        const v = PVector(this.x, this.z)
+        v.rotateBy(angle)
+        this.set(v.x, this.y, v.y)
+        return this
+    },
+    rotateZ: function(angle) {
+        const v = PVector(this.x, this.y)
+        v.rotateBy(angle)
+        this.set(v.x, v.y, this.z)
+        return this
     },
     round: function() {
         this.x = Math.round(this.x)
@@ -433,10 +454,10 @@ for (let method in PVector.prototype) {
 }
 
 // amd
-if (typeof define !== 'undefined' && define.amd) define(function() { return PVector; });
+if (typeof define !== 'undefined' && define.amd) define(function() { return PVector })
 // common js
-if (typeof exports !== 'undefined') exports.PVector = PVector;
+if (typeof exports !== 'undefined') exports.PVector = PVector
 // browser
-else if (typeof window !== 'undefined') window.PVector = PVector;
+else if (typeof window !== 'undefined') window.PVector = PVector
 // nodejs
-if (typeof module !== 'undefined') module.exports = PVector;
+if (typeof module !== 'undefined') module.exports = PVector

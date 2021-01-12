@@ -275,6 +275,25 @@ describe('Prototype methods', () => {
             })
         })
 
+        describe('#copy()', () => {
+            let v1, v2
+
+            before(function () {
+                v1 = PVector(42, 21)
+                v2 = v1.copy()
+            })
+
+            it('should return a clone of a vector', function () {
+                expect(v2).to.be.an.instanceof(PVector)
+                expect(v2).to.not.equal(v1)
+            })
+
+            it('should have the same values as the original', function () {
+                expect(v1.x).to.equal(v2.x)
+                expect(v1.y).to.equal(v2.y)
+            })
+        })
+
         describe('#set()', () => {
             let v1, v3, x, y, z
 
@@ -818,7 +837,7 @@ describe('Prototype methods', () => {
                 expect(v1).to.be.an.instanceof(PVector)
             })
 
-            it('should rotate the vector to the angle passed while keeping its magnitude', () => {
+            it('should rotate the vector to the given angle while keeping its magnitude', () => {
                 expect(v1.toFixed(5).toArray()).to.eql([ 10, 10, 0 ])
             })
         })
@@ -834,8 +853,56 @@ describe('Prototype methods', () => {
                 expect(v1).to.be.an.instanceof(PVector)
             })
 
-            it('should add the angle passed to the rotation of the vector while keeping its magnitude', () => {
+            it('should add the given angle to the rotation of the vector while keeping its magnitude', () => {
                 expect(v1.toFixed(5).toArray()).to.eql([ -10, 10, 0 ])
+            })
+        })
+
+        describe('#rotateX()', () => {
+            let v1
+
+            before(() => {
+                v1 = PVector(-5, 10, 0).rotateX(Math.PI / 2)
+            })
+
+            it('should return an instance of PVector', () => {
+                expect(v1).to.be.an.instanceof(PVector)
+            })
+
+            it('should rotate the vector on the Y axis by the given angle', () => {
+                expect(v1.toFixed(5).toArray()).to.eql([ -5, 0, -10 ])
+            })
+        })
+
+        describe('#rotateY()', () => {
+            let v1
+
+            before(() => {
+                v1 = PVector(10, -5, 0).rotateY(Math.PI / 2)
+            })
+
+            it('should return an instance of PVector', () => {
+                expect(v1).to.be.an.instanceof(PVector)
+            })
+
+            it('should rotate the vector on the Y axis by the given angle', () => {
+                expect(v1.toFixed(5).toArray()).to.eql([ 0, -5, 10 ])
+            })
+        })
+
+        describe('#rotateZ()', () => {
+            let v1
+
+            before(() => {
+                v1 = PVector(0, 10, -5).rotateZ(Math.PI/2)
+            })
+
+            it('should return an instance of PVector', () => {
+                expect(v1).to.be.an.instanceof(PVector)
+            })
+
+            it('should rotate the vector on the Z axis by the given angle', () => {
+                expect(v1.toFixed(5).toArray()).to.eql([ -10, 0, -5 ])
             })
         })
 
