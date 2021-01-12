@@ -902,7 +902,7 @@ describe('Prototype methods', () => {
             })
 
             it('should rotate the vector on the Z axis by the given angle', () => {
-                expect(v1.toFixed(5).toArray()).to.eql([ 10, 0, -5 ])
+                expect(v1.toFixed(5).toArray()).to.eql([ -10, 0, -5 ])
             })
         })
 
