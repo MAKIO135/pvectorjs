@@ -1400,7 +1400,7 @@ describe('Prototype methods', () => {
             })
 
             it('should return a vector composed of the cross product between two vectors.', () => {
-                expect(v3.toArray()).to.eql([ -40, 360, -24800 ])
+                expect(v3.toArray()).to.eql([ -40, 60, -400 ])
             })
         })
 

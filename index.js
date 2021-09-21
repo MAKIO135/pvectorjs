@@ -362,9 +362,12 @@ PVector.prototype = {
         return this
     },
     cross: function(vec) {
-        this.x = this.y * vec.z - vec.y * this.z
-        this.y = this.z * vec.x - vec.z * this.x
-        this.z = this.x * vec.y - vec.x * this.y
+        const x = this.y * vec.z - vec.y * this.z
+        const y = this.z * vec.x - vec.z * this.x
+        const z = this.x * vec.y - vec.x * this.y
+        this.x = x
+        this.y = y
+        this.z = z
         return this
     },
     projectOnto: function(vec) {
