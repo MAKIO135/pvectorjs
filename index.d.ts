@@ -16,7 +16,7 @@ declare module 'pvectorjs' {
     /**
      * A JavaScript 2D/3D vector class with chainable methods for common vector operations based on Processing PVector class
      */
-    class PVector implements PVectorValue {
+    export default class PVector implements PVectorValue {
         // Properties
         public x: number
         public y: number
