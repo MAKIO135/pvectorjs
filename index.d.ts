@@ -22,7 +22,7 @@ declare module 'pvectorjs' {
         public y: number
         public z?: number
 
-        constructor(x: number, y: number, z: number)
+        constructor(x?: number, y?: number, z?: number)
         constructor(vec: PVectorValue)
     
 
